@@ -14,6 +14,7 @@ import java.util.*;
 public class Controller implements Initializable {
 
     @FXML private Label resultLabel;
+    @FXML private Label errorLabel;
     @FXML private TextField param1;
     @FXML private TextField param2;
     @FXML private ComboBox<String> operator;
@@ -46,6 +47,9 @@ public class Controller implements Initializable {
     @FXML void evaluateBtn_OnAction(){
 
         Ruleable rule = new RuleImpl();
+
+        // clear error label
+        errorLabel.setText("");
 
         try {
             // apply operator to both parameters
@@ -86,7 +90,7 @@ public class Controller implements Initializable {
             // print out parameters in rule
             for (int i = 0; i < size; i++) {
 
-                System.out.println("Queue size: " + rule.getRuleParameters().size() + ". " + rule.getRuleParameters().remove().getParameterType().toString());
+                System.out.println("Queue size: " + rule.getRuleParameters().size() + ". " + rule.getRuleParameters().remove().getParameter().toString());
             }
 
         } catch (Exception e){
@@ -94,7 +98,7 @@ public class Controller implements Initializable {
             // reset values
             param1.setText("");
             param2.setText("");
-            resultLabel.setText("Error with parameters, enter numbers!");
+            errorLabel.setText("Error with parameters, enter numbers!");
 
         } // try
 

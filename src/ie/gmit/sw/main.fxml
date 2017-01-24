@@ -22,5 +22,10 @@
          <font>
             <Font size="14.0" />
          </font></Label>
+      <Label fx:id="errorLabel" layoutX="50.0" layoutY="200.0" textFill="RED">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
