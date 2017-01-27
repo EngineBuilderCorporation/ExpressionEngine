@@ -8,6 +8,7 @@ import java.util.*;
 public class RuleImpl implements Ruleable {
 
     private Queue<Parameterable> ruleSections = new LinkedList<>();
+    private Expressionable expression; // this will be the root expression in expression tree.
 
     public void addParameter(Parameterable param){
 

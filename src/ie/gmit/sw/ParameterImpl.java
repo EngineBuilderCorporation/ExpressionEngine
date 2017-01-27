@@ -1,5 +1,7 @@
 package ie.gmit.sw;
 
+import sun.security.jca.GetInstance;
+
 /**
  * Created by Ross Byrne on 23/01/17.
  */
@@ -36,6 +38,17 @@ public class ParameterImpl implements Parameterable {
                         return false;
                     } // if
 
+                    break;
+                case EXPRESSION:
+
+                    // make sure the object is a parameter
+                    if(parameter instanceof Expressionable){
+
+                        // save object
+                    } else {
+
+                        return false;
+                    }
                     break;
             } // switch
             // if it hasn't crashed by now, save values
