@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/RuleBuilderDemo.iml" filepath="$PROJECT_DIR$/RuleBuilderDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ExpressionEngine.iml" filepath="$PROJECT_DIR$/ExpressionEngine.iml" />
     </modules>
   </component>
 </project>

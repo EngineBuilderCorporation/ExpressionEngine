@@ -5,5 +5,5 @@ package ie.gmit.sw;
  */
 public enum ParameterType {
 
-    STRING, NUMBER, OPERATOR, EXPRESSION
+    NUMBER, OPERATOR, EXPRESSION
 }

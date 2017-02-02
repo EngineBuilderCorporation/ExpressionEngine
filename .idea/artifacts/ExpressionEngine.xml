@@ -1,19 +1,19 @@
 <component name="ArtifactManager">
-  <artifact type="javafx" name="JavaFXApp">
-    <output-path>$PROJECT_DIR$/out/artifacts/JavaFXApp</output-path>
+  <artifact type="javafx" name="ExpressionEngine">
+    <output-path>$PROJECT_DIR$/out/artifacts/ExpressionEngine</output-path>
     <properties id="javafx-properties">
       <options>
         <option name="appClass" value="ie.gmit.sw.Main" />
         <option name="description" value="" />
         <option name="htmlPlaceholderId" value="" />
-        <option name="title" value="Rule Builder Demo" />
+        <option name="title" value="Expression Engine" />
         <option name="vendor" value="" />
         <option name="version" value="" />
       </options>
     </properties>
     <root id="root">
       <element id="archive" name="JavaFXApp.jar">
-        <element id="module-output" name="RuleBuilderDemo" />
+        <element id="module-output" name="ExpressionEngine" />
       </element>
     </root>
   </artifact>
