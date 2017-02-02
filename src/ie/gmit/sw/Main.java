@@ -14,7 +14,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
 
         Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
-        primaryStage.setTitle("Rule Builder Demo");
+        primaryStage.setTitle("Expression Builder");
         primaryStage.setScene(new Scene(root, 800, 575));
         primaryStage.show();
 

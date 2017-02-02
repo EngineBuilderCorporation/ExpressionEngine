@@ -16,7 +16,7 @@
       <TextField fx:id="param1" layoutX="50.0" layoutY="82.0" />
       <ComboBox fx:id="operator" layoutX="234.0" layoutY="82.0" prefWidth="150.0" promptText="Select Operator" />
       <TextField fx:id="param2" layoutX="396.0" layoutY="82.0" />
-      <Label layoutX="50.0" layoutY="40.0" text="Rule Builder" />
+      <Label layoutX="50.0" layoutY="40.0" text="Expression Builder" />
       <Button fx:id="evaluateBtn" layoutX="50.0" layoutY="312.0" mnemonicParsing="false" onMouseClicked="#evaluateBtn_OnAction" text="Evaluate" />
       <Label layoutX="50.0" layoutY="147.0" text="Result: ">
          <font>
