@@ -5,5 +5,7 @@ package ie.gmit.sw;
  */
 public interface Expressionable {
 
+    public boolean evaluate();
 
+    public boolean setExpression(Parameterable x, Parameterable y, Parameterable operator);
 }
