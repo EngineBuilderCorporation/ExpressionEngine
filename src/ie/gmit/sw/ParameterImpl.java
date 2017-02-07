@@ -30,7 +30,9 @@ public class ParameterImpl implements Parameterable {
 
                     if( parameter.toString() == ">" ||
                         parameter.toString() == "<" ||
-                        parameter.toString() == "=="
+                        parameter.toString() == "==" ||
+                        parameter.toString() == "&&" ||
+                        parameter.toString() == "||"
                     ){
                         // ok, save them
                     } else {

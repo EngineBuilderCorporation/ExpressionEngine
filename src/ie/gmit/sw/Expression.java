@@ -17,7 +17,7 @@ public class Expression implements Expressionable {
         Expressionable ex1 = null;
         Expressionable ex2 = null;
 
-        switch(operator.getParameter().toString()){
+        switch((String)operator.getParameter()){
 
             case "&&":
 
@@ -60,6 +60,7 @@ public class Expression implements Expressionable {
                 break;
         } // switch
 
+        System.out.println("Expression with: " + operator.getParameter().toString() + " is: " + result);
 
         return result;
     }

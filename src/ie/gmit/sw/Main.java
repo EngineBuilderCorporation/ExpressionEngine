@@ -23,6 +23,67 @@ public class Main extends Application {
     // main method launches the JavaFX application
     public static void main(String[] args) {
 
+        // testing expression tree
+
+        Parameterable paramx = new ParameterImpl();
+        Parameterable paramy = new ParameterImpl();
+        Parameterable oper = new ParameterImpl();
+
+        Ruleable rule = new RuleImpl();
+
+        Expressionable ex5 = new Expression();
+        paramx.setParameter(10, ParameterType.NUMBER);
+        paramy.setParameter(5, ParameterType.NUMBER);
+        oper.setParameter("<", ParameterType.OPERATOR);
+        ex5.setExpression(paramx, paramy, oper);
+
+        paramx = new ParameterImpl();
+        paramy = new ParameterImpl();
+        oper = new ParameterImpl();
+
+        Expressionable ex4 = new Expression();
+        paramx.setParameter(10, ParameterType.NUMBER);
+        paramy.setParameter(10, ParameterType.NUMBER);
+        oper.setParameter("==", ParameterType.OPERATOR);
+        ex4.setExpression(paramx, paramy, oper);
+
+        paramx = new ParameterImpl();
+        paramy = new ParameterImpl();
+        oper = new ParameterImpl();
+
+        Expressionable ex3 = new Expression();
+        paramx.setParameter(100, ParameterType.NUMBER);
+        paramy.setParameter(50, ParameterType.NUMBER);
+        oper.setParameter(">", ParameterType.OPERATOR);
+        ex3.setExpression(paramx, paramy, oper);
+
+        paramx = new ParameterImpl();
+        paramy = new ParameterImpl();
+        oper = new ParameterImpl();
+
+        Expressionable ex2 = new Expression();
+        paramx.setParameter(ex3, ParameterType.EXPRESSION);
+        paramy.setParameter(ex4, ParameterType.EXPRESSION);
+        oper.setParameter("&&", ParameterType.OPERATOR);
+        ex2.setExpression(paramx, paramy, oper);
+
+        paramx = new ParameterImpl();
+        paramy = new ParameterImpl();
+        oper = new ParameterImpl();
+
+        Expressionable ex1 = new Expression();
+        paramx.setParameter(ex2, ParameterType.EXPRESSION);
+        paramy.setParameter(ex5, ParameterType.EXPRESSION);
+        oper.setParameter("&&", ParameterType.OPERATOR);
+        ex1.setExpression(paramx, paramy, oper);
+
+        rule.setExpression(ex1);
+
+        // evaluate tree
+        boolean result = rule.computeRule();
+
+        System.out.println("Result: " + result);
+
         // start the JavaFX application
         launch(args);
 

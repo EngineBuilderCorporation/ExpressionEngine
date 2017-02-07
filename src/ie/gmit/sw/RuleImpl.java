@@ -17,7 +17,7 @@ public class RuleImpl implements Ruleable {
     // computes if the rule equals true or false
     public boolean computeRule(){
 
-        return false;
+        return expression.evaluate();
     }
 
 } // class
