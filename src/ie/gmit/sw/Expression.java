@@ -13,10 +13,14 @@ public class Expression implements Expressionable {
 
     public boolean setExpression(Parameterable x, Parameterable y, Parameterable operator){
 
-        if(x.getParameterType() == ParameterType.EXPRESSION || y.getParameterType() == ParameterType.EXPRESSION){
+//        if(x.getParameterType() == ParameterType.EXPRESSION || y.getParameterType() == ParameterType.EXPRESSION){
+//
+//           // if(operator.getParameter().toString())
+//        }
 
-           // if(operator.getParameter().toString())
-        }
+        this.paramX = x;
+        this.paramY = y;
+        this.operator = operator;
 
         return false;
     }

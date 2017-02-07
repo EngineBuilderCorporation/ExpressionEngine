@@ -7,21 +7,12 @@ import java.util.*;
  */
 public class RuleImpl implements Ruleable {
 
-    private Queue<Parameterable> ruleSections = new LinkedList<>();
     private Expressionable expression; // this will be the root expression in expression tree.
 
-    public void addParameter(Parameterable param){
+    public void setExpression(Expressionable expression){
 
-        // add parameter to rule
-        ruleSections.add(param);
-
-    } // addParameter()
-
-    public Queue<Parameterable> getRuleParameters(){
-
-        return ruleSections;
-
-    } // getRuleParameters()
+        this.expression = expression;
+    }
 
     // computes if the rule equals true or false
     public boolean computeRule(){

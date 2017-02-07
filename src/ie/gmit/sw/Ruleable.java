@@ -8,9 +8,7 @@ import java.util.*;
  */
 public interface Ruleable {
 
-    public void addParameter(Parameterable param);
-
-    public Queue<Parameterable> getRuleParameters();
+    public void setExpression(Expressionable expression);
 
     public boolean computeRule();
 

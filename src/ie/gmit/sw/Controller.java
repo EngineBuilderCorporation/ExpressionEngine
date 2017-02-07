@@ -71,27 +71,20 @@ public class Controller implements Initializable {
             // values are good, save
 
             // save parameter 1
-            Parameterable param = new ParameterImpl();
-            param.setParameter(Double.parseDouble(param1.getText()), ParameterType.NUMBER);
-            rule.addParameter(param);
+            Parameterable paramx = new ParameterImpl();
+            paramx.setParameter(Double.parseDouble(param1.getText()), ParameterType.NUMBER);
 
             // save operator
-            param = new ParameterImpl();
-            param.setParameter(operator.getSelectionModel().getSelectedItem().toString(), ParameterType.OPERATOR);
-            rule.addParameter(param);
+            Parameterable op = new ParameterImpl();
+            op.setParameter(operator.getSelectionModel().getSelectedItem().toString(), ParameterType.OPERATOR);
 
             // save parameter 2
-            param = new ParameterImpl();
-            param.setParameter(Double.parseDouble(param2.getText()), ParameterType.NUMBER);
-            rule.addParameter(param);
+            Parameterable paramy = new ParameterImpl();
+            paramy.setParameter(Double.parseDouble(param2.getText()), ParameterType.NUMBER);
 
-            int size = rule.getRuleParameters().size();
-
-            // print out parameters in rule
-            for (int i = 0; i < size; i++) {
-
-                System.out.println("Queue size: " + rule.getRuleParameters().size() + ". " + rule.getRuleParameters().remove().getParameter().toString());
-            }
+            Expression ex = new Expression();
+            boolean b = ex.setExpression(paramx, paramy, op);
+            rule.setExpression(ex);
 
         } catch (Exception e){
 
