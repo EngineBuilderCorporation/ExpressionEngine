@@ -72,7 +72,14 @@ public class Controller implements Initializable {
         // add changed listener
         operator.valueProperty().addListener((ov, t, t1) -> {
 
-            //System.out.println(t1);
+            System.out.println(t1);
+
+            Label l = new Label("Hello");
+
+            grid.getChildren().remove(getNodeByColumnIndex(new Integer(3), grid));
+            grid.add(l, 3, 0);
+
+
         });
 
     } // initialize()
@@ -90,6 +97,16 @@ public class Controller implements Initializable {
         }
 
         return result;
+    }
+
+    public Integer getNodesColumnIndex(Node node){
+
+        Integer index = null;
+
+        // get the colymn index of the node, as Integer
+        index = grid.getColumnIndex(node);
+
+        return index;
     }
 
 
