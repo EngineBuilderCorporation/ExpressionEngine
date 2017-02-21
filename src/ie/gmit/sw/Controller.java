@@ -1,10 +1,16 @@
 package ie.gmit.sw;
 
+import com.sun.org.apache.xpath.internal.SourceTree;
 import javafx.beans.value.*;
 import javafx.collections.*;
 import javafx.event.*;
 import javafx.fxml.*;
+import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.layout.*;
+
+
+import javax.swing.text.html.ListView;
 import java.net.URL;
 import java.util.*;
 
@@ -19,10 +25,39 @@ public class Controller implements Initializable {
     @FXML private TextField param2;
     @FXML private ComboBox<String> operator;
     @FXML private Button evaluateBtn;
+    @FXML private GridPane grid;
 
     // GUI element initialisation code goes here
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        int newColIndex = 1;
+
+
+        try {
+
+            // add a column in at a certain index
+            for(int i = grid.getColumnConstraints().size() - 1; i >= newColIndex; i--){
+
+                // get node from column
+                Node n = getNodeByColumnIndex(new Integer(i), grid);
+
+                // remove node to avoid dupes
+                grid.getChildren().remove(n);
+
+                // add node to next column to shift it up a index
+                grid.add(n, i + 1, 0);
+
+            } // for
+
+            // add the new column
+            grid.add(new Label("Beans"), newColIndex, 0);
+
+        } catch (Exception e){
+
+            e.printStackTrace();
+        }
+
 
         // set the options for the operators comboBox
         operator.setItems(FXCollections.observableArrayList(
@@ -41,6 +76,21 @@ public class Controller implements Initializable {
         });
 
     } // initialize()
+
+    public Node getNodeByColumnIndex (final Integer column, GridPane gridPane) {
+        Node result = null;
+        ObservableList<Node> childrens = gridPane.getChildren();
+
+        for (Node node : childrens) {
+
+            if(column.equals(gridPane.getColumnIndex(node))) {
+
+                result = node;
+            }
+        }
+
+        return result;
+    }
 
 
     // button on click event handler
