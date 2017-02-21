@@ -74,7 +74,7 @@ public class Main extends Application {
         Expressionable ex1 = new Expression();
         paramx.setParameter(ex2, ParameterType.EXPRESSION);
         paramy.setParameter(ex5, ParameterType.EXPRESSION);
-        oper.setParameter("&&", ParameterType.OPERATOR);
+        oper.setParameter("||", ParameterType.OPERATOR);
         ex1.setExpression(paramx, paramy, oper);
 
         rule.setExpression(ex1);
