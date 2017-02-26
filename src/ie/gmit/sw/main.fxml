@@ -30,7 +30,7 @@
          <font>
             <Font size="14.0" />
          </font></Label>
-       <ScrollPane fx:id="sp" fitToWidth="true" hbarPolicy="ALWAYS" hmax="100.0" hmin="1.0" layoutX="49.0" layoutY="138.0" nodeOrientation="LEFT_TO_RIGHT" pannable="true" vbarPolicy="NEVER" vmax="0.0">
+       <ScrollPane fx:id="sp" fitToWidth="true" hmax="100.0" hmin="1.0" hvalue="1.0" layoutX="49.0" layoutY="138.0" nodeOrientation="LEFT_TO_RIGHT" pannable="true" vbarPolicy="NEVER" vmax="0.0">
            <content>
                <GridPane fx:id="grid" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="60.0" prefWidth="500.0" style="-fx-grid-lines-visible: true;">
                    <rowConstraints>

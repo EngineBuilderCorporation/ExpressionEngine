@@ -38,13 +38,15 @@ public class Controller implements Initializable {
         sp.setPrefSize(700, 100);
 
         // add new columns
-        addColumn(0, new Label("New 1"));
-        addColumn(1, new Label("New 2"));
-        addColumn(2, new Label("New 3"));
-        addColumn(3, new Label("New 4"));
-        addColumn(4, new Label("New 5"));
-        addColumn(5, new Label("New 6"));
-        addColumn(6, new Label("New 7"));
+        addColumn(0, new Label("1"));
+        addColumn(1, new Label("2"));
+        addColumn(2, new Label("3"));
+        addColumn(3, new Label("4"));
+        addColumn(4, new Label("5"));
+        addColumn(5, new Label("6"));
+        addColumn(6, new Label("7"));
+
+        UIExpressionTree root = new UIExpressionTree(this);
 
         // set the options for the operators comboBox
         operator.setItems(FXCollections.observableArrayList(
@@ -78,6 +80,23 @@ public class Controller implements Initializable {
         });
 
     } // initialize()
+
+    // replaces the contents of a column
+    public void updateColumn(int index, Node node, double width){
+
+        // get node from column
+        Node n = getNodeByColumnIndex(new Integer(index), grid);
+
+        // remove node from children to avoid dupes (throws exception otherwise)
+        grid.getChildren().remove(n);
+
+        // add node to next column to shift its index up by one
+        grid.add(node, index, 0);
+
+        // set the width of the column
+        grid.getColumnConstraints().get(index).setPrefWidth(width);
+
+    }
 
     // adds a column at selected index with provided node
     public void addColumn(int index, Node node){
