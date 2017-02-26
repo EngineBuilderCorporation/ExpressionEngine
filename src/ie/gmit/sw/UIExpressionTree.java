@@ -27,7 +27,11 @@ public class UIExpressionTree {
     private Label leftBracket = new Label("(");
     private Label rightBracket = new Label(")");
 
-    public UIExpressionTree(Controller controller){
+
+    public UIExpressionTree(Controller controller, int startIndex){
+
+        // set the width of the operator
+        oper.setPrefWidth(90);
 
         this.controller = controller;
 
@@ -50,45 +54,68 @@ public class UIExpressionTree {
             System.out.println(newVal);
             System.out.println("Operator's column index: " + controller.getNodesColumnIndex(oper));
 
-            switch (newVal){
+            // if operator is not set, set it
+            if(!operSet) {
 
-                case ">":
-                case "<":
+                switch (newVal){
 
+                    case ">":
+                    case "<":
 
-                    if(!operSet) {
+                        // create textFields as parameters
                         createTextFields();
-                    } else {
+                        break;
+                    case "AND":
+                    case "OR":
 
-                        oper.setItems(FXCollections.observableArrayList(oldVal));
-                    }
-                    break;
-            }
+                        // create new operators as parameters
+                        createOperators();
+                        break;
+                    case "==":
+                        // make a new parameters as comboBoxs giving option for numbers of new expressions
+                        break;
+                } // switch
+
+            } else { // if operator is already set
+
+                // remove other operator options
+                oper.setItems(FXCollections.observableArrayList(oldVal));
+
+            } // if
 
         });
 
         // add left bracket
-        controller.addColumn(0, leftBracket);
+        controller.addColumn(startIndex, leftBracket);
 
         // add empty space for paramX
-
+        //controller.addColumn(startIndex + 1, new Label(""));
 
         // add the operator combo box to grid
-        controller.addColumn(2, oper);
+        controller.addColumn(startIndex + 1, oper);
 
         // add empty space for paramY
+        //controller.addColumn(startIndex + 3, new Label(""));
 
         // add right bracket
-        controller.addColumn(4, rightBracket);
-
+        controller.addColumn(startIndex + 2, rightBracket);
 
     } // constructor
 
+    // Creates TextFields and sets them to paramX and paramY
+    // then adds them into the grid on the right and left hand side of the operator
     private void createTextFields(){
 
         // create parameters as TextFields
-        paramX = new TextField();
-        paramY = new TextField();
+        TextField t = new TextField();
+        t.setPrefWidth(90);
+
+        paramX = t;
+
+        t = new TextField();
+        t.setPrefWidth(90);
+
+        paramY = t;
 
         int index;
 
@@ -96,21 +123,41 @@ public class UIExpressionTree {
         index = controller.getNodesColumnIndex(oper);
 
         // update the column left of operator to be paramX
-        controller.updateColumn(index - 1, (Node)paramX, 100);
+        controller.addColumn(index, (Node)paramX);
+
+        // get the index of the operator in the grid
+        index = controller.getNodesColumnIndex(oper);
 
         // update the column right for operator with paramY
-        controller.updateColumn(index + 1, (Node)paramY, 100);
+        controller.addColumn(index + 1, (Node)paramY);
 
         // flag the operator as set
         operSet = true;
 
     } // createTextFields()
 
+    // Creates UIExpressionTree Objects and sets them to paramX and paramY
+    // then adds them into the grid on the right and left hand side of the operator
     private void createOperators(){
 
+        int index;
 
+        // get the index of the operator
+        index = controller.getNodesColumnIndex(oper);
+
+        // create parameters as UIExpressionTree Objects to create a tree structure
+        paramX = new UIExpressionTree(controller, index);
+
+        // get the index of the operator
+        index = controller.getNodesColumnIndex(oper);
+
+        paramY = new UIExpressionTree(controller, index + 1);
+
+        // flag the operator as set
+        operSet = true;
 
     } // createOperators()
+
 
     // getter and setters
 

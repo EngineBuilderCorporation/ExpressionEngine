@@ -35,18 +35,11 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        sp.setPrefSize(700, 100);
+        int startIndex = 0;
+        sp.setPrefSize(1800, 100);
 
-        // add new columns
-        addColumn(0, new Label("1"));
-        addColumn(1, new Label("2"));
-        addColumn(2, new Label("3"));
-        addColumn(3, new Label("4"));
-        addColumn(4, new Label("5"));
-        addColumn(5, new Label("6"));
-        addColumn(6, new Label("7"));
 
-        UIExpressionTree root = new UIExpressionTree(this);
+        UIExpressionTree root = new UIExpressionTree(this, startIndex);
 
         // set the options for the operators comboBox
         operator.setItems(FXCollections.observableArrayList(
@@ -128,28 +121,8 @@ public class Controller implements Initializable {
             // insert new node into selected index
             grid.add(node, index, 0);
 
-            double gridSize = 0;
-
-            // update the width of each column
-            for(int i = 0; i < grid.getColumnConstraints().size(); i++){
-
-                // get column constraint
-                ColumnConstraints columnConstraints = grid.getColumnConstraints().get(i);
-
-                // set the columns width
-                columnConstraints.setPrefWidth(100);
-                columnConstraints.setHgrow(Priority.NEVER);
-
-                // center the contents of column
-                columnConstraints.setHalignment(HPos.CENTER);
-
-                // calculate the size of the grid
-                gridSize += columnConstraints.getPrefWidth();
-
-            } // for
-
-            // update the width of the grid
-            grid.setPrefWidth(gridSize);
+            // update the width of the grid and remove empty spaces
+            updateGrid();
 
         } catch (Exception e){
 
@@ -157,6 +130,57 @@ public class Controller implements Initializable {
         } // try
 
     } // addColumn()
+
+    public void updateGrid(){
+
+        double gridSize = 0;
+
+        // update the width of each column
+        for(int i = 0; i < grid.getColumnConstraints().size(); i++){
+
+            // get the node in the column
+            Node node = getNodeByColumnIndex(new Integer(i), grid);
+
+            // get column constraint
+            ColumnConstraints columnConstraints = grid.getColumnConstraints().get(i);
+
+            // set the columns width
+
+            if(node instanceof Label){ // if the node is a label
+                Label l = (Label)node;
+
+                if (l.getText() == "(" || l.getText() == ")"){
+
+                    // set width of column
+                    columnConstraints.setPrefWidth(50);
+
+                } else {
+
+                    // set width of column
+                    columnConstraints.setPrefWidth(100);
+                } // if
+
+            } else {
+
+                // set width of column
+                columnConstraints.setPrefWidth(100);
+            }
+
+            // set column to never grow
+            columnConstraints.setHgrow(Priority.NEVER);
+
+            // center the contents of column
+            columnConstraints.setHalignment(HPos.CENTER);
+
+            // calculate the size of the grid
+            gridSize += columnConstraints.getPrefWidth();
+
+        } // for
+
+        // update the width of the grid
+        grid.setPrefWidth(gridSize);
+
+    } // updateGrid()
 
     // gets a node by its index from a gridpane
     public Node getNodeByColumnIndex (final Integer column, GridPane gridPane) {
@@ -190,6 +214,13 @@ public class Controller implements Initializable {
         return index;
 
     } // getNodesColumnIndex()
+
+    public void removeColumn(int index){
+
+        // remove a column
+        grid.getColumnConstraints().remove(index);
+
+    } // removeColumn()
 
 
     // button on click event handler
