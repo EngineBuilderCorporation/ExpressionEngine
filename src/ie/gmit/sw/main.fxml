@@ -31,9 +31,9 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <ScrollPane layoutX="50.0" layoutY="183.0">
+      <ScrollPane fx:id="sp" fitToWidth="true" hmax="0.0" hmin="1.0" layoutX="46.0" layoutY="183.0" nodeOrientation="LEFT_TO_RIGHT" vbarPolicy="NEVER" vmax="0.0">
          <content>
-            <GridPane fx:id="grid" alignment="CENTER_LEFT" prefHeight="90.0" prefWidth="507.0">
+            <GridPane fx:id="grid" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="60.0" prefWidth="500.0" style="-fx-grid-lines-visible: true;">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

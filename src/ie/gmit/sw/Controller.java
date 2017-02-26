@@ -5,11 +5,14 @@ import javafx.beans.value.*;
 import javafx.collections.*;
 import javafx.event.*;
 import javafx.fxml.*;
+import javafx.geometry.HPos;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 
 
+import javax.swing.text.*;
+import javax.swing.text.TableView;
 import javax.swing.text.html.ListView;
 import java.net.URL;
 import java.util.*;
@@ -26,13 +29,19 @@ public class Controller implements Initializable {
     @FXML private ComboBox<String> operator;
     @FXML private Button evaluateBtn;
     @FXML private GridPane grid;
+    @FXML private ScrollPane sp;
 
     // GUI element initialisation code goes here
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        sp.setHmax(440);
+        sp.setPrefSize(600, 100);
+        //grid.setMinWidth(700);
+
         int newColIndex = 1;
 
+        System.out.println("grid width: " + grid.getPrefWidth());
 
         try {
 
@@ -50,8 +59,24 @@ public class Controller implements Initializable {
 
             } // for
 
-            // add the new column
+           // grid.setPrefWidth(grid.getPrefWidth() + 200);
+
+            // add new column constraint
+            ColumnConstraints column1 = new ColumnConstraints(200);
+            grid.getColumnConstraints().addAll(column1);
+
+
+            // update the width of columns
             grid.add(new Label("Beans"), newColIndex, 0);
+
+            // add a column in at a certain index
+            for(int i = 0; i < grid.getColumnConstraints().size(); i++){
+
+                ColumnConstraints columnConstraints = grid.getColumnConstraints().get(i);
+                columnConstraints.setPrefWidth(100);
+                columnConstraints.setHalignment(HPos.CENTER);
+
+            } // for
 
         } catch (Exception e){
 
