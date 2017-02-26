@@ -37,43 +37,47 @@ public class Controller implements Initializable {
 
         sp.setHmax(440);
         sp.setPrefSize(600, 100);
-        //grid.setMinWidth(700);
 
         int newColIndex = 1;
 
-        System.out.println("grid width: " + grid.getPrefWidth());
 
+        // add a column in at a certain index
         try {
 
-            // add a column in at a certain index
+            // loop through each column, starting at the end (right hand side)
+            // loop until selected index, shifting to right, by one index
             for(int i = grid.getColumnConstraints().size() - 1; i >= newColIndex; i--){
 
                 // get node from column
                 Node n = getNodeByColumnIndex(new Integer(i), grid);
 
-                // remove node to avoid dupes
+                // remove node from children to avoid dupes (throws exception otherwise)
                 grid.getChildren().remove(n);
 
-                // add node to next column to shift it up a index
+                // add node to next column to shift its index up by one
                 grid.add(n, i + 1, 0);
 
             } // for
 
-           // grid.setPrefWidth(grid.getPrefWidth() + 200);
+            // create new column constraint
+            ColumnConstraints col = new ColumnConstraints(200);
 
-            // add new column constraint
-            ColumnConstraints column1 = new ColumnConstraints(200);
-            grid.getColumnConstraints().addAll(column1);
+            // add it to the new end column in grid
+            grid.getColumnConstraints().addAll(col);
 
-
-            // update the width of columns
+            // insert new node into selected index
             grid.add(new Label("Beans"), newColIndex, 0);
 
-            // add a column in at a certain index
+            // update the width of each column
             for(int i = 0; i < grid.getColumnConstraints().size(); i++){
 
+                // get column constraint
                 ColumnConstraints columnConstraints = grid.getColumnConstraints().get(i);
+
+                // set the columns width
                 columnConstraints.setPrefWidth(100);
+
+                // center the contents of column
                 columnConstraints.setHalignment(HPos.CENTER);
 
             } // for
@@ -81,8 +85,7 @@ public class Controller implements Initializable {
         } catch (Exception e){
 
             e.printStackTrace();
-        }
-
+        } // try
 
         // set the options for the operators comboBox
         operator.setItems(FXCollections.observableArrayList(
@@ -99,31 +102,42 @@ public class Controller implements Initializable {
 
             System.out.println(t1);
 
+            // update the contents of a column
+
             Label l = new Label("Hello");
 
+            // first remove old contents from children
             grid.getChildren().remove(getNodeByColumnIndex(new Integer(3), grid));
-            grid.add(l, 3, 0);
 
+            // add the new node
+            grid.add(l, 3, 0);
 
         });
 
     } // initialize()
 
+    // gets a node by its index from a gridpane
     public Node getNodeByColumnIndex (final Integer column, GridPane gridPane) {
+
         Node result = null;
-        ObservableList<Node> childrens = gridPane.getChildren();
+        ObservableList<Node> children = gridPane.getChildren(); // get the children nodes
 
-        for (Node node : childrens) {
+        for (Node node : children) {
 
+            // if the index of child node is equal to the index selected
             if(column.equals(gridPane.getColumnIndex(node))) {
 
+                // save the node
                 result = node;
-            }
-        }
+                break;
+            } // if
+        } // for
 
         return result;
-    }
 
+    } // getNodeByColumnIndex()
+
+    // method to get the index of a node
     public Integer getNodesColumnIndex(Node node){
 
         Integer index = null;
@@ -132,7 +146,8 @@ public class Controller implements Initializable {
         index = grid.getColumnIndex(node);
 
         return index;
-    }
+
+    } // getNodesColumnIndex()
 
 
     // button on click event handler
