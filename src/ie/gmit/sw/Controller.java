@@ -31,6 +31,9 @@ public class Controller implements Initializable {
     @FXML private GridPane grid;
     @FXML private ScrollPane sp;
 
+    private Ruleable rule = null;
+    private UIExpressionTree uiRoot = null;
+
     // GUI element initialisation code goes here
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -38,8 +41,8 @@ public class Controller implements Initializable {
         int startIndex = 0;
         sp.setPrefSize(1800, 100);
 
-
-        UIExpressionTree root = new UIExpressionTree(this, startIndex);
+        // initialise the root for the UIExpressionTree
+        uiRoot = new UIExpressionTree(this, startIndex);
 
         // set the options for the operators comboBox
         operator.setItems(FXCollections.observableArrayList(
@@ -226,48 +229,57 @@ public class Controller implements Initializable {
     // button on click event handler
     @FXML void evaluateBtn_OnAction(){
 
-        Ruleable rule = new RuleImpl();
+        rule = new RuleImpl();
 
         // clear error label
         errorLabel.setText("");
 
         try {
-            // apply operator to both parameters
-            switch (operator.getSelectionModel().getSelectedItem()) {
-                case ">":
+            // build an expression tree from the UI
+            rule.setExpression(uiRoot.buildExpressionTree());
 
-                    resultLabel.setText(Boolean.toString(Double.parseDouble(param1.getText()) > Double.parseDouble(param2.getText())));
-                    break;
-                case "<":
+            // evaluate the expression
+            resultLabel.setText(String.valueOf(rule.computeRule()));
 
-                    resultLabel.setText(Boolean.toString(Double.parseDouble(param1.getText()) < Double.parseDouble(param2.getText())));
-                    break;
-                case "==":
+//            // apply operator to both parameters
+//            switch (operator.getSelectionModel().getSelectedItem()) {
+//                case ">":
+//
+//                    resultLabel.setText(Boolean.toString(Double.parseDouble(param1.getText()) > Double.parseDouble(param2.getText())));
+//                    break;
+//                case "<":
+//
+//                    resultLabel.setText(Boolean.toString(Double.parseDouble(param1.getText()) < Double.parseDouble(param2.getText())));
+//                    break;
+//                case "==":
+//
+//                    resultLabel.setText(Boolean.toString(Double.parseDouble(param1.getText()) == Double.parseDouble(param2.getText())));
+//                    break;
+//            } // switch
+//
+//            // values are good, save
+//
+//            // save parameter 1
+//            Parameterable paramx = new ParameterImpl();
+//            paramx.setParameter(Double.parseDouble(param1.getText()), ParameterType.NUMBER);
+//
+//            // save operator
+//            Parameterable op = new ParameterImpl();
+//            op.setParameter(operator.getSelectionModel().getSelectedItem().toString(), ParameterType.OPERATOR);
+//
+//            // save parameter 2
+//            Parameterable paramy = new ParameterImpl();
+//            paramy.setParameter(Double.parseDouble(param2.getText()), ParameterType.NUMBER);
+//
+//            Expression ex = new Expression();
+//            boolean b = ex.setExpression(paramx, paramy, op);
+//            rule.setExpression(ex);
 
-                    resultLabel.setText(Boolean.toString(Double.parseDouble(param1.getText()) == Double.parseDouble(param2.getText())));
-                    break;
-            } // switch
 
-            // values are good, save
-
-            // save parameter 1
-            Parameterable paramx = new ParameterImpl();
-            paramx.setParameter(Double.parseDouble(param1.getText()), ParameterType.NUMBER);
-
-            // save operator
-            Parameterable op = new ParameterImpl();
-            op.setParameter(operator.getSelectionModel().getSelectedItem().toString(), ParameterType.OPERATOR);
-
-            // save parameter 2
-            Parameterable paramy = new ParameterImpl();
-            paramy.setParameter(Double.parseDouble(param2.getText()), ParameterType.NUMBER);
-
-            Expression ex = new Expression();
-            boolean b = ex.setExpression(paramx, paramy, op);
-            rule.setExpression(ex);
 
         } catch (Exception e){
 
+            e.printStackTrace();
             // reset values
             param1.setText("");
             param2.setText("");

@@ -102,6 +102,77 @@ public class UIExpressionTree {
 
     } // constructor
 
+    // Recursive method to build the expression tree so it can be evaluated
+    public Expressionable buildExpressionTree(){
+
+        Expressionable ex = null;
+
+        if(paramX instanceof TextField){ // if the parameters are textFields
+
+            ex = new Expression();
+
+            // get TextField from ParamX
+            TextField t = (TextField)getParamX();
+
+            // create a parameter from value in paramX
+            Parameterable paramX = new ParameterImpl();
+            paramX.setParameter(t.getText(), ParameterType.NUMBER);
+
+            // get TextField from paramY
+            t = (TextField)getParamY();
+
+            // create parameter from paramY value
+            Parameterable paramY = new ParameterImpl();
+            paramY.setParameter(t.getText(), ParameterType.NUMBER);
+
+            // create parameter for operator
+            Parameterable operator = new ParameterImpl();
+            operator.setParameter(getOper().getSelectionModel().getSelectedItem(), ParameterType.OPERATOR);
+
+            // create expression from parameters
+            ex.setExpression(paramX, paramY, operator);
+
+        } else if(paramX instanceof UIExpressionTree) { // if the parameters are UIExpressionTree objects
+
+            ex = new Expression();
+
+            UIExpressionTree uiEx1 = null;
+            UIExpressionTree uiEx2 = null;
+
+            // get UIExpressionTree objects from paramX and paramY
+            uiEx1 = (UIExpressionTree)paramX;
+            uiEx2 = (UIExpressionTree)paramY;
+
+            // create parameter for paramX, paramY and operator
+            Parameterable paramX = new ParameterImpl();
+            Parameterable paramY = new ParameterImpl();
+            Parameterable operator = new ParameterImpl();
+
+            // get expression from paramX and paramY
+            Expressionable ex1 = uiEx1.buildExpressionTree();
+            Expressionable ex2 = uiEx2.buildExpressionTree();
+
+            // add expressions to parameters x and y
+            paramX.setParameter(ex1, ParameterType.EXPRESSION);
+            paramY.setParameter(ex2, ParameterType.EXPRESSION);
+
+            // add operator to operator parameter
+            operator.setParameter(getOper().getSelectionModel().getSelectedItem(), ParameterType.OPERATOR);
+
+            // build expression
+            ex.setExpression(paramX, paramY, operator);
+
+        } else {
+
+            // something went wrong
+
+        } // if
+
+        return ex;
+
+    } // buildExpressionTree()
+
+
     // Creates TextFields and sets them to paramX and paramY
     // then adds them into the grid on the right and left hand side of the operator
     private void createTextFields(){

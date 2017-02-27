@@ -19,7 +19,7 @@ public class Expression implements Expressionable {
 
         switch((String)operator.getParameter()){
 
-            case "&&":
+            case "AND":
 
                 ex1 = (Expressionable) paramX.getParameter();
                 ex2 = (Expressionable) paramY.getParameter();
@@ -27,7 +27,7 @@ public class Expression implements Expressionable {
                 result = (ex1.evaluate() && ex2.evaluate());
 
                 break;
-            case "||":
+            case "OR":
 
                  ex1 = (Expressionable) paramX.getParameter();
                  ex2 = (Expressionable) paramY.getParameter();

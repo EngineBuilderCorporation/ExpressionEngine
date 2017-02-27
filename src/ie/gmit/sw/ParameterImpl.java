@@ -31,8 +31,8 @@ public class ParameterImpl implements Parameterable {
                     if( parameter.toString() == ">" ||
                         parameter.toString() == "<" ||
                         parameter.toString() == "==" ||
-                        parameter.toString() == "&&" ||
-                        parameter.toString() == "||"
+                        parameter.toString() == "AND" ||
+                        parameter.toString() == "OR"
                     ){
                         // ok, save them
                     } else {
