@@ -51,9 +51,6 @@ public class UIExpressionTree {
         // add changed listener
         oper.valueProperty().addListener((ov, oldVal, newVal) -> {
 
-            System.out.println(newVal);
-            System.out.println("Operator's column index: " + controller.getNodesColumnIndex(oper));
-
             // if operator is not set, set it
             if(!operSet) {
 
@@ -88,14 +85,8 @@ public class UIExpressionTree {
         // add left bracket
         controller.addColumn(startIndex, leftBracket);
 
-        // add empty space for paramX
-        //controller.addColumn(startIndex + 1, new Label(""));
-
         // add the operator combo box to grid
         controller.addColumn(startIndex + 1, oper);
-
-        // add empty space for paramY
-        //controller.addColumn(startIndex + 3, new Label(""));
 
         // add right bracket
         controller.addColumn(startIndex + 2, rightBracket);
@@ -111,22 +102,24 @@ public class UIExpressionTree {
 
             ex = new Expression();
 
+            // create parameter for paramX, paramY and operator
+            Parameterable paramX = new ParameterImpl();
+            Parameterable paramY = new ParameterImpl();
+            Parameterable operator = new ParameterImpl();
+
             // get TextField from ParamX
             TextField t = (TextField)getParamX();
 
-            // create a parameter from value in paramX
-            Parameterable paramX = new ParameterImpl();
+            // set the value of the parameter from the UI textField
             paramX.setParameter(t.getText(), ParameterType.NUMBER);
 
             // get TextField from paramY
             t = (TextField)getParamY();
 
-            // create parameter from paramY value
-            Parameterable paramY = new ParameterImpl();
+            // set the value of the parameter from the UI textField
             paramY.setParameter(t.getText(), ParameterType.NUMBER);
 
-            // create parameter for operator
-            Parameterable operator = new ParameterImpl();
+            // Set the value of the operator from the selected item in combo box
             operator.setParameter(getOper().getSelectionModel().getSelectedItem(), ParameterType.OPERATOR);
 
             // create expression from parameters
@@ -181,11 +174,14 @@ public class UIExpressionTree {
         TextField t = new TextField();
         t.setPrefWidth(90);
 
+        // set value for paramX
         paramX = t;
 
+        // create textField
         t = new TextField();
         t.setPrefWidth(90);
 
+        // set value for paramY
         paramY = t;
 
         int index;

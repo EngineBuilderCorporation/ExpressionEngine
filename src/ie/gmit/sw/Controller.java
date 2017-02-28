@@ -24,9 +24,9 @@ public class Controller implements Initializable {
 
     @FXML private Label resultLabel;
     @FXML private Label errorLabel;
-    @FXML private TextField param1;
-    @FXML private TextField param2;
-    @FXML private ComboBox<String> operator;
+    //@FXML private TextField param1;
+    //@FXML private TextField param2;
+    //@FXML private ComboBox<String> operator;
     @FXML private Button evaluateBtn;
     @FXML private GridPane grid;
     @FXML private ScrollPane sp;
@@ -45,17 +45,17 @@ public class Controller implements Initializable {
         uiRoot = new UIExpressionTree(this, startIndex);
 
         // set the options for the operators comboBox
-        operator.setItems(FXCollections.observableArrayList(
-            ">",
-            "<",
-            "=="
-        ));
+//        operator.setItems(FXCollections.observableArrayList(
+//            ">",
+//            "<",
+//            "=="
+//        ));
 
         // select the first option
-        operator.getSelectionModel().selectFirst();
+        //operator.getSelectionModel().selectFirst();
 
         // add changed listener
-        operator.valueProperty().addListener((ov, t, t1) -> {
+        /*operator.valueProperty().addListener((ov, t, t1) -> {
 
             System.out.println(t1);
 
@@ -73,7 +73,7 @@ public class Controller implements Initializable {
             // add a new column at index 4
             addColumn(4, l);
 
-        });
+        });*/
 
     } // initialize()
 
@@ -155,7 +155,7 @@ public class Controller implements Initializable {
                 if (l.getText() == "(" || l.getText() == ")"){
 
                     // set width of column
-                    columnConstraints.setPrefWidth(50);
+                    columnConstraints.setPrefWidth(20);
 
                 } else {
 
@@ -281,8 +281,6 @@ public class Controller implements Initializable {
 
             e.printStackTrace();
             // reset values
-            param1.setText("");
-            param2.setText("");
             errorLabel.setText("Error with parameters, enter numbers!");
 
         } // try
