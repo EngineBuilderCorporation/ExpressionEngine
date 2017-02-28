@@ -16,6 +16,8 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
         primaryStage.setTitle("Expression Builder");
         primaryStage.setScene(new Scene(root, 800, 575));
+        primaryStage.setMinWidth(600);
+        primaryStage.setMinHeight(600);
         primaryStage.show();
 
     } // start

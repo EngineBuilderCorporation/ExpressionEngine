@@ -6,9 +6,12 @@ import javafx.collections.*;
 import javafx.event.*;
 import javafx.fxml.*;
 import javafx.geometry.HPos;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import javafx.stage.Screen;
 
 
 import javax.swing.text.*;
@@ -36,7 +39,6 @@ public class Controller implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         int startIndex = 0;
-        sp.setPrefSize(1800, 100);
 
         // initialise the root for the UIExpressionTree
         uiRoot = new UIExpressionTree(this, startIndex);
