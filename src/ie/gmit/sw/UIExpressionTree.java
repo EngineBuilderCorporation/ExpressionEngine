@@ -1,14 +1,10 @@
 package ie.gmit.sw;
 
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-
-import java.util.Objects;
 
 /**
  * Created by Ross Byrne on 26/02/17.
@@ -21,9 +17,6 @@ public class UIExpressionTree {
     private Object paramY;
 
     private boolean operSet = false;
-    private int operIndex;
-    private int paramXIndex;
-    private int paramYIndex;
     private Label leftBracket = new Label("(");
     private Label rightBracket = new Label(")");
 
@@ -256,28 +249,5 @@ public class UIExpressionTree {
         this.oper = oper;
     }
 
-    public int getOperIndex() {
-        return operIndex;
-    }
-
-    public void setOperIndex(int operIndex) {
-        this.operIndex = operIndex;
-    }
-
-    public int getParamXIndex() {
-        return paramXIndex;
-    }
-
-    public void setParamXIndex(int paramXIndex) {
-        this.paramXIndex = paramXIndex;
-    }
-
-    public int getParamYIndex() {
-        return paramYIndex;
-    }
-
-    public void setParamYIndex(int paramYIndex) {
-        this.paramYIndex = paramYIndex;
-    }
 
 } // class

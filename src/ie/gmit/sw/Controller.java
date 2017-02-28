@@ -24,9 +24,6 @@ public class Controller implements Initializable {
 
     @FXML private Label resultLabel;
     @FXML private Label errorLabel;
-    //@FXML private TextField param1;
-    //@FXML private TextField param2;
-    //@FXML private ComboBox<String> operator;
     @FXML private Button evaluateBtn;
     @FXML private GridPane grid;
     @FXML private ScrollPane sp;
