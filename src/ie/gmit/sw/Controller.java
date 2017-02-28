@@ -154,7 +154,7 @@ public class Controller implements Initializable {
                 if (l.getText() == "(" || l.getText() == ")"){
 
                     // set width of column
-                    columnConstraints.setPrefWidth(20);
+                    columnConstraints.setPrefWidth(26);
 
                 } else {
 
