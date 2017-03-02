@@ -86,8 +86,23 @@ public class Main extends Application {
 //
 //        System.out.println("Result: " + result);
 
+        //  ======================================================
+        //                  Test Command Pattern
+        //  ======================================================
+
+        NotificationController notify = new NotificationController();
+
+        Email email = new Email();
+
+        EmailCommand emailCommand = new EmailCommand(email);
+
+        notify.setCommand(emailCommand);
+        notify.buttonPresssed();
+
         // start the JavaFX application
         launch(args);
+
+
 
     } // main()
 }
