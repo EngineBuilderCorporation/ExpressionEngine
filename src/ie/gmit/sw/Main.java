@@ -93,16 +93,18 @@ public class Main extends Application {
         NotificationController notify = new NotificationController();
 
         Email email = new Email();
+        MobileMessage mobileMessage = new MobileMessage();
 
         EmailCommand emailCommand = new EmailCommand(email);
+        MobileMessageCommand mobileCommand = new MobileMessageCommand(mobileMessage);
 
         notify.setCommand(emailCommand);
+        notify.setCommand(mobileCommand);
+
         notify.buttonPresssed();
 
         // start the JavaFX application
         launch(args);
-
-
 
     } // main()
 }
