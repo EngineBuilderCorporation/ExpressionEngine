@@ -1,22 +1,11 @@
 package ie.gmit.sw;
 
-import com.sun.org.apache.xpath.internal.SourceTree;
-import javafx.beans.value.*;
 import javafx.collections.*;
-import javafx.event.*;
 import javafx.fxml.*;
-import javafx.geometry.HPos;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.Node;
-import javafx.scene.Scene;
+import javafx.geometry.*;
+import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import javafx.stage.Screen;
-
-
-import javax.swing.text.*;
-import javax.swing.text.TableView;
-import javax.swing.text.html.ListView;
 import java.net.URL;
 import java.util.*;
 
@@ -42,37 +31,6 @@ public class Controller implements Initializable {
 
         // initialise the root for the UIExpressionTree
         uiRoot = new UIExpressionTree(this, startIndex);
-
-        // set the options for the operators comboBox
-//        operator.setItems(FXCollections.observableArrayList(
-//            ">",
-//            "<",
-//            "=="
-//        ));
-
-        // select the first option
-        //operator.getSelectionModel().selectFirst();
-
-        // add changed listener
-        /*operator.valueProperty().addListener((ov, t, t1) -> {
-
-            System.out.println(t1);
-
-            // update the contents of a column
-
-            Label l = new Label("Hello");
-
-//            Node n = l;
-//
-//            if(n instanceof Label){
-//
-//                System.out.println("Hot dog, it's a Label");
-//            }
-
-            // add a new column at index 4
-            addColumn(4, l);
-
-        });*/
 
     } // initialize()
 
@@ -239,43 +197,7 @@ public class Controller implements Initializable {
 
             // evaluate the expression
             resultLabel.setText(String.valueOf(rule.computeRule()));
-
-//            // apply operator to both parameters
-//            switch (operator.getSelectionModel().getSelectedItem()) {
-//                case ">":
-//
-//                    resultLabel.setText(Boolean.toString(Double.parseDouble(param1.getText()) > Double.parseDouble(param2.getText())));
-//                    break;
-//                case "<":
-//
-//                    resultLabel.setText(Boolean.toString(Double.parseDouble(param1.getText()) < Double.parseDouble(param2.getText())));
-//                    break;
-//                case "==":
-//
-//                    resultLabel.setText(Boolean.toString(Double.parseDouble(param1.getText()) == Double.parseDouble(param2.getText())));
-//                    break;
-//            } // switch
-//
-//            // values are good, save
-//
-//            // save parameter 1
-//            Parameterable paramx = new ParameterImpl();
-//            paramx.setParameter(Double.parseDouble(param1.getText()), ParameterType.NUMBER);
-//
-//            // save operator
-//            Parameterable op = new ParameterImpl();
-//            op.setParameter(operator.getSelectionModel().getSelectedItem().toString(), ParameterType.OPERATOR);
-//
-//            // save parameter 2
-//            Parameterable paramy = new ParameterImpl();
-//            paramy.setParameter(Double.parseDouble(param2.getText()), ParameterType.NUMBER);
-//
-//            Expression ex = new Expression();
-//            boolean b = ex.setExpression(paramx, paramy, op);
-//            rule.setExpression(ex);
-
-
-
+            
         } catch (Exception e){
 
             e.printStackTrace();
