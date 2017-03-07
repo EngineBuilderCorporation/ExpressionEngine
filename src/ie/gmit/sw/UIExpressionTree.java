@@ -67,10 +67,17 @@ public class UIExpressionTree {
                         break;
                 } // switch
 
+                // flag the operator as set
+                operSet = true;
+
+                oper.setDisable(true);
+                oper.setStyle("-fx-opacity: 1; -fx-fill: black;");
+                
+                oper.valueProperty().addListener((o, old, ne) -> {});
+
+
             } else { // if operator is already set
 
-                // remove other operator options
-                oper.setItems(FXCollections.observableArrayList(oldVal));
 
             } // if
 
@@ -223,9 +230,6 @@ public class UIExpressionTree {
         else
             controller.updateColumn(index + 1, (Node)paramY);
 
-        // flag the operator as set
-        operSet = true;
-
     } // createTextFields()
 
     // Creates UIExpressionTree Objects and sets them to paramX and paramY
@@ -259,9 +263,6 @@ public class UIExpressionTree {
             paramY = new UIExpressionTree(controller, index + 1, false);
         else
             paramY = new UIExpressionTree(controller, index + 1, true);
-
-        // flag the operator as set
-        operSet = true;
 
     } // createOperators()
 
@@ -351,9 +352,6 @@ public class UIExpressionTree {
 
         // update the column right for operator with paramY
         controller.addColumn(index + 1, (Node)paramY);
-
-        // flag the operator as set
-        operSet = true;
 
     } // createEqualsDropDowns()
 
