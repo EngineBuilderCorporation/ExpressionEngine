@@ -1,10 +1,8 @@
 package ie.gmit.sw;
 
 import javafx.collections.FXCollections;
-import javafx.scene.Node;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.*;
+import javafx.scene.control.*;
 
 /**
  * Created by Ross Byrne on 26/02/17.
@@ -13,6 +11,7 @@ public class UIExpressionTree {
 
     private Controller controller;
     private ComboBox<String> oper = new ComboBox<>();
+    private Label operLabel;
     private Object paramX = null;
     private Object paramY = null;
 
@@ -62,7 +61,7 @@ public class UIExpressionTree {
                         createOperators();
                         break;
                     case "==":
-                        // make a new parameters as comboBoxs giving option for numbers of new expressions
+                        // make a new parameters as comboBoxes giving option for numbers of new expressions
                         createEqualsDropDowns();
                         break;
                 } // switch
@@ -70,14 +69,13 @@ public class UIExpressionTree {
                 // flag the operator as set
                 operSet = true;
 
-                oper.setDisable(true);
-                oper.setStyle("-fx-opacity: 1;");
-                
-                oper.valueProperty().addListener((o, old, ne) -> {});
+                // once operator is set, change for combo box to label
 
+                // create new label with operator selected in combo box
+                operLabel = new Label(oper.getSelectionModel().getSelectedItem());
 
-            } else { // if operator is already set
-
+                // replace the combo box with the label
+                controller.updateColumn(controller.getNodesColumnIndex(oper), operLabel);
 
             } // if
 
@@ -137,7 +135,7 @@ public class UIExpressionTree {
             paramY.setParameter(t.getText(), ParameterType.NUMBER);
 
             // Set the value of the operator from the selected item in combo box
-            operator.setParameter(getOper().getSelectionModel().getSelectedItem(), ParameterType.OPERATOR);
+            operator.setParameter(operLabel.getText(), ParameterType.OPERATOR);
 
             // create expression from parameters
             ex.setExpression(paramX, paramY, operator);
@@ -167,7 +165,7 @@ public class UIExpressionTree {
             paramY.setParameter(ex2, ParameterType.EXPRESSION);
 
             // add operator to operator parameter
-            operator.setParameter(getOper().getSelectionModel().getSelectedItem(), ParameterType.OPERATOR);
+            operator.setParameter(operLabel.getText(), ParameterType.OPERATOR);
 
             // build expression
             ex.setExpression(paramX, paramY, operator);
@@ -248,7 +246,10 @@ public class UIExpressionTree {
         }
 
         // get the index of the operator
-        index = controller.getNodesColumnIndex(oper);
+        if(paramsNull == true)
+            index = controller.getNodesColumnIndex(oper);
+        else
+            index = controller.getNodesColumnIndex(operLabel);
 
         // create parameters as UIExpressionTree Objects to create a tree structure
         if(paramsNull == true)
@@ -257,7 +258,10 @@ public class UIExpressionTree {
             paramX = new UIExpressionTree(controller, index - 1, true);
 
         // get the index of the operator
-        index = controller.getNodesColumnIndex(oper);
+        if(paramsNull == true)
+            index = controller.getNodesColumnIndex(oper);
+        else
+            index = controller.getNodesColumnIndex(operLabel);
 
         if(paramsNull == true)
             paramY = new UIExpressionTree(controller, index + 1, false);
