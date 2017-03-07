@@ -86,6 +86,26 @@ public class Main extends Application {
 //
 //        System.out.println("Result: " + result);
 
+        //  ======================================================
+        //                  Test Command Pattern
+        //  ======================================================
+
+        NotificationController notify = new NotificationController();
+
+        Email email = new Email();
+        MobileMessage mobileMessage = new MobileMessage();
+        WebMessage webMessage = new WebMessage();
+
+        EmailCommand emailCommand = new EmailCommand(email);
+        MobileMessageCommand mobileCommand = new MobileMessageCommand(mobileMessage);
+        WebMessageCommand webMessageCommand = new WebMessageCommand(webMessage);
+
+        notify.setCommand(emailCommand);
+        notify.setCommand(mobileCommand);
+        notify.setCommand(webMessageCommand);
+
+        notify.buttonPresssed();
+
         // start the JavaFX application
         launch(args);
 
