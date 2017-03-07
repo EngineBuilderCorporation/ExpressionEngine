@@ -71,7 +71,7 @@ public class Expression implements Expressionable {
                 break;
         } // switch
 
-        System.out.println("Expression with: " + operator.getParameter().toString() + " is: " + result);
+        //System.out.println("Expression with: " + operator.getParameter().toString() + " is: " + result);
 
         return result;
     }
