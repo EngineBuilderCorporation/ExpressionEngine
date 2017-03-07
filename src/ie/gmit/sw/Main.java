@@ -94,12 +94,15 @@ public class Main extends Application {
 
         Email email = new Email();
         MobileMessage mobileMessage = new MobileMessage();
+        WebMessage webMessage = new WebMessage();
 
         EmailCommand emailCommand = new EmailCommand(email);
         MobileMessageCommand mobileCommand = new MobileMessageCommand(mobileMessage);
+        WebMessageCommand webMessageCommand = new WebMessageCommand(webMessage);
 
         notify.setCommand(emailCommand);
         notify.setCommand(mobileCommand);
+        notify.setCommand(webMessageCommand);
 
         notify.buttonPresssed();
 
