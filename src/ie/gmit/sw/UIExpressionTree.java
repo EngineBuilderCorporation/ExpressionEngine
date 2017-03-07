@@ -21,7 +21,7 @@ public class UIExpressionTree {
     private Label rightBracket = new Label(")");
 
 
-    public UIExpressionTree(Controller controller, int startIndex){
+    public UIExpressionTree(Controller controller, int startIndex, boolean update){
 
         // set the width of the operator
         oper.setPrefWidth(90);
@@ -70,20 +70,36 @@ public class UIExpressionTree {
             } else { // if operator is already set
 
                 // remove other operator options
-               // oper.setItems(FXCollections.observableArrayList(oldVal));
+                oper.setItems(FXCollections.observableArrayList(oldVal));
 
             } // if
 
         });
 
-        // add left bracket
-        controller.addColumn(startIndex, leftBracket);
+        // check if updating parameters or adding from scratch
+        if(update == false) {
 
-        // add the operator combo box to grid
-        controller.addColumn(startIndex + 1, oper);
+            // add left bracket
+            controller.addColumn(startIndex, leftBracket);
 
-        // add right bracket
-        controller.addColumn(startIndex + 2, rightBracket);
+            // add the operator combo box to grid
+            controller.addColumn(startIndex + 1, oper);
+
+            // add right bracket
+            controller.addColumn(startIndex + 2, rightBracket);
+
+        } else {
+
+            // add left bracket
+            controller.updateColumn(startIndex, leftBracket);
+
+            // add the operator combo box to grid
+            controller.addColumn(startIndex + 1, oper);
+
+            // add right bracket
+            controller.addColumn(startIndex + 2, rightBracket);
+
+        } // if
 
     } // constructor
 
@@ -217,17 +233,32 @@ public class UIExpressionTree {
     private void createOperators(){
 
         int index;
+        boolean paramsNull;
+
+        if(paramX == null && paramY == null){
+
+            paramsNull = true;
+        }
+        else {
+            paramsNull = false;
+        }
 
         // get the index of the operator
         index = controller.getNodesColumnIndex(oper);
 
         // create parameters as UIExpressionTree Objects to create a tree structure
-        paramX = new UIExpressionTree(controller, index);
+        if(paramsNull == true)
+            paramX = new UIExpressionTree(controller, index, false);
+        else
+            paramX = new UIExpressionTree(controller, index - 1, true);
 
         // get the index of the operator
         index = controller.getNodesColumnIndex(oper);
 
-        paramY = new UIExpressionTree(controller, index + 1);
+        if(paramsNull == true)
+            paramY = new UIExpressionTree(controller, index + 1, false);
+        else
+            paramY = new UIExpressionTree(controller, index + 1, true);
 
         // flag the operator as set
         operSet = true;
@@ -237,9 +268,10 @@ public class UIExpressionTree {
     // create dropdowns for equals operator
     private void createEqualsDropDowns(){
 
-        // create parameters as TextFields
+        // create parameters as Dropdowns
         ComboBox<String> t = new ComboBox<>();
-        // set the options for the operators comboBox
+
+        // set the options for the comboBox
         t.setItems(FXCollections.observableArrayList(
                 "Select...",
                 "Expression",
@@ -252,38 +284,29 @@ public class UIExpressionTree {
         // add changed listener
         t.valueProperty().addListener((ov, oldVal, newVal) -> {
 
-            // if operator is not set, set it
-           // if(!operSet) {
+            switch (newVal){
 
-                switch (newVal){
+                case "Expression":
 
-                    case "Expression":
+                    // create Expressions as parameters
+                    createOperators();
+                    break;
+                case "Number":
 
-
-                        // create Expressions as parameters
-                        createOperators();
-                        break;
-                    case "Number":
-
-                        createTextFields();
-                        break;
-                } // switch
-
-            /////} else { // if operator is already set
-
-                // remove other operator options
-               // oper.setItems(FXCollections.observableArrayList(oldVal));
-
-          //  } // if
+                    // create textfields as parameters
+                    createTextFields();
+                    break;
+            } // switch
 
         });
-        //t.setPrefWidth(90);
 
         // set value for paramX
         paramX = t;
 
-        // create textField
+        // create combo box
         t = new ComboBox<>();
+
+        // add options
         t.setItems(FXCollections.observableArrayList(
                 "Select...",
                 "Expression",
@@ -296,32 +319,21 @@ public class UIExpressionTree {
         // add changed listener
         t.valueProperty().addListener((ov, oldVal, newVal) -> {
 
-            // if operator is not set, set it
-            //if(!operSet) {
+            switch (newVal){
 
-                switch (newVal){
-
-                    case "Expression":
+                case "Expression":
 
 
-                        // create Expressions as parameters
-                        createOperators();
-                        break;
-                    case "Number":
+                    // create Expressions as parameters
+                    createOperators();
+                    break;
+                case "Number":
 
-                        createTextFields();
-                        break;
-                } // switch
-
-           // } else { // if operator is already set
-
-                // remove other operator options
-                oper.setItems(FXCollections.observableArrayList(oldVal));
-
-           //// } // if
+                    createTextFields();
+                    break;
+            } // switch
 
         });
-        //t.setPrefWidth(90);
 
         // set value for paramY
         paramY = t;
@@ -342,6 +354,7 @@ public class UIExpressionTree {
 
         // flag the operator as set
         operSet = true;
+
     } // createEqualsDropDowns()
 
     // getter and setters

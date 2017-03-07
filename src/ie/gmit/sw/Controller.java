@@ -16,9 +16,7 @@ public class Controller implements Initializable {
 
     @FXML private Label resultLabel;
     @FXML private Label errorLabel;
-    @FXML private Button evaluateBtn;
     @FXML private GridPane grid;
-    @FXML private ScrollPane sp;
 
     private Ruleable rule = null;
     private UIExpressionTree uiRoot = null;
@@ -30,7 +28,7 @@ public class Controller implements Initializable {
         int startIndex = 0;
 
         // initialise the root for the UIExpressionTree
-        uiRoot = new UIExpressionTree(this, startIndex);
+        uiRoot = new UIExpressionTree(this, startIndex, false);
 
     } // initialize()
 
@@ -46,8 +44,8 @@ public class Controller implements Initializable {
         // add node to next column to shift its index up by one
         grid.add(node, index, 0);
 
-        // update the width of the grid
-       // updateGrid();
+        // update the columns widths
+        updateGrid();
 
     } // updateColumn()
 
@@ -174,14 +172,6 @@ public class Controller implements Initializable {
         return index;
 
     } // getNodesColumnIndex()
-
-    public void removeColumn(int index){
-
-        // remove a column
-        grid.getColumnConstraints().remove(index);
-
-    } // removeColumn()
-
 
     // button on click event handler
     @FXML void evaluateBtn_OnAction(){
