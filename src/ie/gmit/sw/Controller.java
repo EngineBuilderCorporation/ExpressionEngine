@@ -17,9 +17,15 @@ public class Controller implements Initializable {
     @FXML private Label resultLabel;
     @FXML private Label errorLabel;
     @FXML private GridPane grid;
+    @FXML private ComboBox<String> EvaluationSelection;
+    @FXML private ComboBox<String> commandSelection;
+    @FXML private Label messageLabel;
 
     private Ruleable rule = null;
     private UIExpressionTree uiRoot = null;
+    private NotificationController notify;
+
+    private boolean selectionChoice;
 
     // GUI element initialisation code goes here
     @Override
@@ -29,6 +35,47 @@ public class Controller implements Initializable {
 
         // initialise the root for the UIExpressionTree
         uiRoot = new UIExpressionTree(this, startIndex, false);
+
+        // Create notify object
+        notify = new NotificationController();
+
+        // ===== True / False Selection Box =====
+
+        // set the options for the evaluation comboBox
+        EvaluationSelection.setItems(FXCollections.observableArrayList(
+                "Select",
+                "True",
+                "False"
+        ));
+
+        EvaluationSelection.getSelectionModel().selectFirst();
+
+        // Set boolean to correct value
+        EvaluationSelection.valueProperty().addListener((ov, oldVal, newVal) -> {
+
+            switch (newVal){
+
+                case "True":
+
+                   setSelectionChoice(true);
+                    break;
+                case "False":
+
+                   setSelectionChoice(false);
+                    break;
+            } // switch
+
+        });
+
+        // Command pattern list
+        commandSelection.setItems(FXCollections.observableArrayList(
+                "Select",
+                "Send Email",
+                "Send Web Message",
+                "Send Mobile Message"
+        ));
+
+        commandSelection.getSelectionModel().selectFirst();
 
     } // initialize()
 
@@ -176,21 +223,39 @@ public class Controller implements Initializable {
     // button on click event handler
     @FXML void evaluateBtn_OnAction(){
 
+        messageLabel.setText("");
+
+        boolean compareResult;
+
         rule = new RuleImpl();
 
         // clear error label
         errorLabel.setText("");
 
         try {
+
             // build an expression tree from the UI
             rule.setExpression(uiRoot.buildExpressionTree());
 
+            compareResult = rule.computeRule();
+
+            if(EvaluationSelection.getSelectionModel().getSelectedItem() != "Select")
+            {
+
+                // Compare the two booleans here
+                if(compareResult == selectionChoice)
+                {
+                    getCommand();
+                }
+
+            }
+
             // evaluate the expression
-            resultLabel.setText(String.valueOf(rule.computeRule()));
+            resultLabel.setText(String.valueOf(compareResult));
             
         } catch (Exception e){
 
-            e.printStackTrace();
+            //e.printStackTrace();
             // reset values
             errorLabel.setText("Error with parameters, enter numbers!");
 
@@ -198,5 +263,74 @@ public class Controller implements Initializable {
 
     } // evaluateBtn_OnAction()
 
+    //==================================
+    //        Getters and Setters
+    //==================================
+
+    public boolean isSelectionChoice() {
+        return selectionChoice;
+    }
+
+    public void setSelectionChoice(boolean selectionChoice) {
+        this.selectionChoice = selectionChoice;
+    }
+
+    private void sendEmail(){
+
+        Email email = new Email();
+        EmailCommand emailCommand = new EmailCommand(email);
+        notify.setCommand(emailCommand);
+        notify.buttonPresssed();
+        messageLabel.setText("Email sending");
+    }
+
+    private void sendWebMessage(){
+
+        WebMessage webMessage = new WebMessage();
+        WebMessageCommand webMessageCommand = new WebMessageCommand(webMessage);
+        notify.setCommand(webMessageCommand);
+        notify.buttonPresssed();
+        messageLabel.setText("Web Message sending");
+    }
+
+    private void sendMobileMessage(){
+
+        MobileMessage mobileMessage = new MobileMessage();
+        MobileMessageCommand mobileCommand = new MobileMessageCommand(mobileMessage);
+        notify.setCommand(mobileCommand);
+        notify.buttonPresssed();
+        messageLabel.setText("Mobile message sending");
+    }
+
+    // Send message
+    private void getCommand()
+    {
+
+        String nameOfSelection;
+
+        // Returns the selection and stores in string
+        nameOfSelection = commandSelection.getSelectionModel().getSelectedItem();
+
+        switch (nameOfSelection)
+        {
+
+            case "Send Email":
+
+                sendEmail();
+                break;
+
+            case "Send Web Message":
+
+                sendWebMessage();
+                break;
+
+            case "Send Mobile Message":
+
+                sendMobileMessage();
+                break;
+
+        }// End switch
+
+    }// End getCommand
 
 } // class

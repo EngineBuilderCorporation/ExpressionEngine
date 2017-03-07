@@ -90,7 +90,7 @@ public class Main extends Application {
         //                  Test Command Pattern
         //  ======================================================
 
-        NotificationController notify = new NotificationController();
+       /* NotificationController notify = new NotificationController();
 
         Email email = new Email();
         MobileMessage mobileMessage = new MobileMessage();
@@ -104,7 +104,7 @@ public class Main extends Application {
         notify.setCommand(mobileCommand);
         notify.setCommand(webMessageCommand);
 
-        notify.buttonPresssed();
+        notify.buttonPresssed();*/
 
         // start the JavaFX application
         launch(args);
