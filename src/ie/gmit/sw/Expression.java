@@ -11,6 +11,7 @@ public class Expression implements Expressionable {
     private Parameterable paramY;
     private Parameterable operator;
 
+    // recursive method to evaluate the expression
     public boolean evaluate(){
 
         boolean result = false;
@@ -21,39 +22,49 @@ public class Expression implements Expressionable {
 
             case "AND":
 
+                // get the expressions from the parameters
                 ex1 = (Expressionable) paramX.getParameter();
                 ex2 = (Expressionable) paramY.getParameter();
 
+                // evaluate those expresssions and then check if AND is true or false
                 result = (ex1.evaluate() && ex2.evaluate());
 
                 break;
             case "OR":
 
-                 ex1 = (Expressionable) paramX.getParameter();
-                 ex2 = (Expressionable) paramY.getParameter();
+                // get the expressions from the parameters
+                ex1 = (Expressionable) paramX.getParameter();
+                ex2 = (Expressionable) paramY.getParameter();
 
+                // evaluate expressions and then check if OR is true or false
                 result = (ex1.evaluate() || ex2.evaluate());
 
                 break;
             case ">":
 
+                // parse the number values from parameters and evaluate if one is greater then the other
                 result = (Double.parseDouble(paramX.getParameter().toString()) > Double.parseDouble(paramY.getParameter().toString()));
                 break;
             case "<":
 
+                // parse the number values from parameters and evaluate if one is less then the other
                 result = (Double.parseDouble(paramX.getParameter().toString()) < Double.parseDouble(paramY.getParameter().toString()));
                 break;
             case "==":
 
-                if(paramX.getParameterType() == ParameterType.NUMBER) {
+                // check of parameter type is a number or expression
+                if(paramX.getParameterType() == ParameterType.NUMBER) { // if number
 
+                    // parse number values and evaluate if numbers are equal
                     result = (Double.parseDouble(paramX.getParameter().toString()) == Double.parseDouble(paramY.getParameter().toString()));
 
-                } else {
+                } else { // if an expression
 
+                    // get the expressions from the parameters
                     ex1 = (Expressionable) paramX.getParameter();
                     ex2 = (Expressionable) paramY.getParameter();
 
+                    // evaluate expressions and check if they are equal
                     result = (ex1.evaluate() == ex2.evaluate());
                 } // if
 
@@ -66,11 +77,6 @@ public class Expression implements Expressionable {
     }
 
     public boolean setExpression(Parameterable x, Parameterable y, Parameterable operator){
-
-//        if(x.getParameterType() == ParameterType.EXPRESSION || y.getParameterType() == ParameterType.EXPRESSION){
-//
-//           // if(operator.getParameter().toString())
-//        }
 
         this.paramX = x;
         this.paramY = y;

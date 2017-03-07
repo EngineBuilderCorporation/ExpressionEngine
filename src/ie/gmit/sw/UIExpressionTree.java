@@ -71,7 +71,7 @@ public class UIExpressionTree {
                 operSet = true;
 
                 oper.setDisable(true);
-                oper.setStyle("-fx-opacity: 1; -fx-fill: black;");
+                oper.setStyle("-fx-opacity: 1;");
                 
                 oper.valueProperty().addListener((o, old, ne) -> {});
 
