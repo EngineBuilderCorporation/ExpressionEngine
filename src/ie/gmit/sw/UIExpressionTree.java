@@ -13,8 +13,8 @@ public class UIExpressionTree {
 
     private Controller controller;
     private ComboBox<String> oper = new ComboBox<>();
-    private Object paramX;
-    private Object paramY;
+    private Object paramX = null;
+    private Object paramY = null;
 
     private boolean operSet = false;
     private Label leftBracket = new Label("(");
@@ -63,13 +63,14 @@ public class UIExpressionTree {
                         break;
                     case "==":
                         // make a new parameters as comboBoxs giving option for numbers of new expressions
+                        createEqualsDropDowns();
                         break;
                 } // switch
 
             } else { // if operator is already set
 
                 // remove other operator options
-                oper.setItems(FXCollections.observableArrayList(oldVal));
+               // oper.setItems(FXCollections.observableArrayList(oldVal));
 
             } // if
 
@@ -163,6 +164,15 @@ public class UIExpressionTree {
     // then adds them into the grid on the right and left hand side of the operator
     private void createTextFields(){
 
+        boolean paramsNull;
+
+        if(paramX == null && paramY == null){
+            paramsNull = true;
+        }
+        else{
+            paramsNull = false;
+        }
+
         // create parameters as TextFields
         TextField t = new TextField();
         t.setPrefWidth(90);
@@ -183,13 +193,19 @@ public class UIExpressionTree {
         index = controller.getNodesColumnIndex(oper);
 
         // update the column left of operator to be paramX
-        controller.addColumn(index, (Node)paramX);
+        if(paramsNull == true)
+            controller.addColumn(index, (Node)paramX);
+        else
+            controller.updateColumn(index - 1, (Node)paramX);
 
         // get the index of the operator in the grid
         index = controller.getNodesColumnIndex(oper);
 
         // update the column right for operator with paramY
-        controller.addColumn(index + 1, (Node)paramY);
+        if(paramsNull == true)
+            controller.addColumn(index + 1, (Node)paramY);
+        else
+            controller.updateColumn(index + 1, (Node)paramY);
 
         // flag the operator as set
         operSet = true;
@@ -218,6 +234,115 @@ public class UIExpressionTree {
 
     } // createOperators()
 
+    // create dropdowns for equals operator
+    private void createEqualsDropDowns(){
+
+        // create parameters as TextFields
+        ComboBox<String> t = new ComboBox<>();
+        // set the options for the operators comboBox
+        t.setItems(FXCollections.observableArrayList(
+                "Select...",
+                "Expression",
+                "Number"
+        ));
+
+        // select the first option
+        t.getSelectionModel().selectFirst();
+
+        // add changed listener
+        t.valueProperty().addListener((ov, oldVal, newVal) -> {
+
+            // if operator is not set, set it
+           // if(!operSet) {
+
+                switch (newVal){
+
+                    case "Expression":
+
+
+                        // create Expressions as parameters
+                        createOperators();
+                        break;
+                    case "Number":
+
+                        createTextFields();
+                        break;
+                } // switch
+
+            /////} else { // if operator is already set
+
+                // remove other operator options
+               // oper.setItems(FXCollections.observableArrayList(oldVal));
+
+          //  } // if
+
+        });
+        //t.setPrefWidth(90);
+
+        // set value for paramX
+        paramX = t;
+
+        // create textField
+        t = new ComboBox<>();
+        t.setItems(FXCollections.observableArrayList(
+                "Select...",
+                "Expression",
+                "Number"
+        ));
+
+        // select the first option
+        t.getSelectionModel().selectFirst();
+
+        // add changed listener
+        t.valueProperty().addListener((ov, oldVal, newVal) -> {
+
+            // if operator is not set, set it
+            //if(!operSet) {
+
+                switch (newVal){
+
+                    case "Expression":
+
+
+                        // create Expressions as parameters
+                        createOperators();
+                        break;
+                    case "Number":
+
+                        createTextFields();
+                        break;
+                } // switch
+
+           // } else { // if operator is already set
+
+                // remove other operator options
+                oper.setItems(FXCollections.observableArrayList(oldVal));
+
+           //// } // if
+
+        });
+        //t.setPrefWidth(90);
+
+        // set value for paramY
+        paramY = t;
+
+        int index;
+
+        // get the index of the operator in the grid
+        index = controller.getNodesColumnIndex(oper);
+
+        // update the column left of operator to be paramX
+        controller.addColumn(index, (Node)paramX);
+
+        // get the index of the operator in the grid
+        index = controller.getNodesColumnIndex(oper);
+
+        // update the column right for operator with paramY
+        controller.addColumn(index + 1, (Node)paramY);
+
+        // flag the operator as set
+        operSet = true;
+    } // createEqualsDropDowns()
 
     // getter and setters
 

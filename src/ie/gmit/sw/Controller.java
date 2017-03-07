@@ -35,7 +35,7 @@ public class Controller implements Initializable {
     } // initialize()
 
     // replaces the contents of a column
-    public void updateColumn(int index, Node node, double width){
+    public void updateColumn(int index, Node node){
 
         // get node from column
         Node n = getNodeByColumnIndex(new Integer(index), grid);
@@ -46,10 +46,10 @@ public class Controller implements Initializable {
         // add node to next column to shift its index up by one
         grid.add(node, index, 0);
 
-        // set the width of the column
-        grid.getColumnConstraints().get(index).setPrefWidth(width);
+        // update the width of the grid
+       // updateGrid();
 
-    }
+    } // updateColumn()
 
     // adds a column at selected index with provided node
     public void addColumn(int index, Node node){
@@ -81,7 +81,7 @@ public class Controller implements Initializable {
             // insert new node into selected index
             grid.add(node, index, 0);
 
-            // update the width of the grid and remove empty spaces
+            // update the width of the grid
             updateGrid();
 
         } catch (Exception e){
