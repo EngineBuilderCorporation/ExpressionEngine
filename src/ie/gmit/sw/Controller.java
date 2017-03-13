@@ -233,7 +233,9 @@ public class Controller implements Initializable {
             stage = new Stage();
             root = FXMLLoader.load(getClass().getResource("dataSourceWindow.fxml"));
             stage.setScene(new Scene(root));
-            stage.setTitle("My modal window");
+            stage.setTitle("Select Data Source");
+            stage.setMinWidth(640);
+            stage.setMinHeight(400);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.initOwner(dataSourceBtn.getScene().getWindow());
             stage.showAndWait();

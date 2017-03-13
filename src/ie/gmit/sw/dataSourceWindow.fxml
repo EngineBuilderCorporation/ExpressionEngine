@@ -7,22 +7,22 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ie.gmit.sw.DataSourceController">
+<VBox minHeight="400.0" minWidth="640.0" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ie.gmit.sw.DataSourceController">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <children>
-        <Label alignment="CENTER" layoutX="30.0" layoutY="32.0" style="&#10;" text="Select Data Source" textAlignment="CENTER" wrapText="false" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="32.0">
+        <Label alignment="CENTER" layoutX="34.0" layoutY="29.0" prefHeight="21.0" prefWidth="202.0" style="&#10;" text="Select Data Source" textAlignment="CENTER" wrapText="false" AnchorPane.leftAnchor="34.0" AnchorPane.topAnchor="29.0">
           <font>
             <Font size="18.0" />
           </font>
         </Label>
             <Button fx:id="addBtn" layoutX="526.0" layoutY="340.0" mnemonicParsing="false" onAction="#addBtn_OnAction" text="Add" AnchorPane.bottomAnchor="35.0" AnchorPane.rightAnchor="52.0" />
-            <TableView layoutX="36.0" layoutY="72.0" prefHeight="200.0" prefWidth="564.0" AnchorPane.leftAnchor="36.0" AnchorPane.topAnchor="72.0">
+            <TableView layoutX="36.0" layoutY="72.0" prefHeight="200.0" prefWidth="564.0" AnchorPane.bottomAnchor="128.0" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="72.0">
               <columns>
-                <TableColumn prefWidth="563.0" text="Data Sources" />
+                <TableColumn minWidth="200.0" prefWidth="563.0" text="Data Sources" />
               </columns>
             </TableView>
-            <Button fx:id="selectBtn" layoutX="476.0" layoutY="340.0" mnemonicParsing="false" onAction="#selectBtn_OnAction" text="Select" />
+            <Button fx:id="selectBtn" layoutX="476.0" layoutY="340.0" mnemonicParsing="false" onAction="#selectBtn_OnAction" text="Select" AnchorPane.bottomAnchor="35.0" AnchorPane.rightAnchor="105.0" />
       </children>
     </AnchorPane>
   </children>
