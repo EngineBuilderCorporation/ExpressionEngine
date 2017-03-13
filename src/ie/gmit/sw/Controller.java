@@ -6,6 +6,8 @@ import javafx.geometry.*;
 import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import javafx.stage.*;
+
 import java.net.URL;
 import java.util.*;
 
@@ -14,12 +16,16 @@ import java.util.*;
  */
 public class Controller implements Initializable {
 
+    @FXML private Button dataSourceBtn;
     @FXML private Label resultLabel;
     @FXML private Label errorLabel;
     @FXML private GridPane grid;
     @FXML private ComboBox<String> EvaluationSelection;
     @FXML private ComboBox<String> commandSelection;
     @FXML private Label messageLabel;
+
+    Stage stage;
+    Parent root;
 
     private Ruleable rule = null;
     private UIExpressionTree uiRoot = null;
@@ -220,7 +226,27 @@ public class Controller implements Initializable {
 
     } // getNodesColumnIndex()
 
-    // button on click event handler
+    // Data source button on click event handler
+    @FXML void dataSourceBtn_OnAction(){
+
+        try {
+            stage = new Stage();
+            root = FXMLLoader.load(getClass().getResource("dataSourceWindow.fxml"));
+            stage.setScene(new Scene(root));
+            stage.setTitle("My modal window");
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initOwner(dataSourceBtn.getScene().getWindow());
+            stage.showAndWait();
+
+        } catch (Exception e){
+
+            e.printStackTrace();
+        } // try
+
+    } // dataSourceBtn_OnAction()
+
+
+    // evaluate button on click event handler
     @FXML void evaluateBtn_OnAction(){
 
         messageLabel.setText("");
