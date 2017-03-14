@@ -17,6 +17,8 @@ public class DataSourceController implements Initializable {
     @FXML private TableColumn<String, String> tableCol;
     @FXML private Button selectBtn;
 
+    private Controller controller;
+
 
     // initialise UI here
     public void initialize(URL location, ResourceBundle resources) {
@@ -37,10 +39,25 @@ public class DataSourceController implements Initializable {
 
         System.out.println("Selected data source: " + table.getSelectionModel().getSelectedItem());
 
+        // pass the selected value to the main controller
+        controller.setSelectedDataSource(getSelectedDataSource());
+
         // close the scene
         Stage stage = (Stage)selectBtn.getScene().getWindow();
         stage.close();
 
     } // selectBtn_OnAction()
+
+
+    // gets the selected data source
+    public String getSelectedDataSource(){
+
+        return table.getSelectionModel().getSelectedItem().toString();
+    }
+
+    public void setMainController(Controller controller){
+
+        this.controller = controller;
+    }
 
 } // class

@@ -27,6 +27,8 @@ public class Controller implements Initializable {
     Stage stage;
     Parent root;
 
+    private String dataSource;
+
     private Ruleable rule = null;
     private UIExpressionTree uiRoot = null;
     private NotificationController notify;
@@ -233,7 +235,19 @@ public class Controller implements Initializable {
 
             // load and show the data source window
             stage = new Stage();
-            root = FXMLLoader.load(getClass().getResource("dataSourceWindow.fxml"));
+
+            // create loader to load the data source window
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("dataSourceWindow.fxml"));
+
+            // load the resources
+            root = loader.load(); //FXMLLoader.load(getClass().getResource("dataSourceWindow.fxml"));
+
+            // get handle on Data source controller
+            DataSourceController controller = loader.getController();
+
+            // pass controller instance to dataSource controller
+            controller.setMainController(this);
+
             stage.setScene(new Scene(root));
             stage.setTitle("Select Data Source");
             stage.setMinWidth(640);
@@ -248,6 +262,17 @@ public class Controller implements Initializable {
         } // try
 
     } // dataSourceBtn_OnAction()
+
+    public void setSelectedDataSource(String dataSource){
+
+        // save the selected data source
+        this.dataSource = dataSource;
+
+        System.out.println("Data Source Selected: " + dataSource);
+
+        // do data source setup
+
+    } // setSelectedDataSource()
 
     // evaluate button on click event handler
     @FXML void evaluateBtn_OnAction(){
