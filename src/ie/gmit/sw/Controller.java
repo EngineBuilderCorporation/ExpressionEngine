@@ -17,6 +17,8 @@ import java.util.*;
 public class Controller implements Initializable {
 
     @FXML private Button dataSourceBtn;
+    @FXML private Label selectedLB;
+    @FXML private Label selectedDataSourceLB;
     @FXML private Label resultLabel;
     @FXML private Label errorLabel;
     @FXML private GridPane grid;
@@ -38,6 +40,9 @@ public class Controller implements Initializable {
     // GUI element initialisation code goes here
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        // hide label by default
+        selectedLB.setVisible(false);
 
         int startIndex = 0;
 
@@ -248,6 +253,7 @@ public class Controller implements Initializable {
             // pass controller instance to dataSource controller
             controller.setMainController(this);
 
+            // setup stage
             stage.setScene(new Scene(root));
             stage.setTitle("Select Data Source");
             stage.setMinWidth(640);
@@ -271,6 +277,8 @@ public class Controller implements Initializable {
         System.out.println("Data Source Selected: " + dataSource);
 
         // do data source setup
+        selectedLB.setVisible(true);
+        selectedDataSourceLB.setText(dataSource);
 
     } // setSelectedDataSource()
 

@@ -32,12 +32,13 @@ public class DataSourceController implements Initializable {
         // add items to table
         table.setItems(items);
 
+        // set first to be selected
+        table.getSelectionModel().selectFirst();
+
     } // initialize()
 
     // the onClick listener for select button
     @FXML void selectBtn_OnAction(){
-
-        System.out.println("Selected data source: " + table.getSelectionModel().getSelectedItem());
 
         // pass the selected value to the main controller
         controller.setSelectedDataSource(getSelectedDataSource());
@@ -55,6 +56,7 @@ public class DataSourceController implements Initializable {
         return table.getSelectionModel().getSelectedItem().toString();
     }
 
+    // method to save the reference to the main controller
     public void setMainController(Controller controller){
 
         this.controller = controller;
