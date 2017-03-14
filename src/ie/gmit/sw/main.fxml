@@ -17,7 +17,6 @@
 
 <AnchorPane minHeight="400.0" minWidth="600.0" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ie.gmit.sw.Controller">
    <children>
-      <Label layoutX="21.0" layoutY="15.0" prefHeight="0.0" prefWidth="121.0" text="Expression Builder" AnchorPane.leftAnchor="21.0" AnchorPane.topAnchor="15.0" />
       <Button fx:id="evaluateBtn" layoutX="36.0" layoutY="366.0" mnemonicParsing="false" onMouseClicked="#evaluateBtn_OnAction" text="Evaluate" AnchorPane.bottomAnchor="109.0" AnchorPane.leftAnchor="36.0" />
       <Label fx:id="errorLabel" layoutX="27.0" layoutY="391.0" prefHeight="84.0" prefWidth="749.0" textFill="RED" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="27.0">
          <font>
@@ -51,6 +50,6 @@
          </font>
       </Label>
       <Label fx:id="messageLabel" layoutX="289.0" layoutY="359.0" AnchorPane.bottomAnchor="126.0" AnchorPane.leftAnchor="289.0" />
-      <Button fx:id="dataSourceBtn" layoutX="21.0" layoutY="41.0" mnemonicParsing="false" onAction="#dataSourceBtn_OnAction" text="Data Source" AnchorPane.leftAnchor="21.0" AnchorPane.topAnchor="41.0" />
+      <Button fx:id="dataSourceBtn" layoutX="17.0" layoutY="24.0" mnemonicParsing="false" onAction="#dataSourceBtn_OnAction" text="Select Data Source" AnchorPane.leftAnchor="17.0" AnchorPane.topAnchor="24.0" />
    </children>
 </AnchorPane>

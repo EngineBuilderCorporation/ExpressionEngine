@@ -230,6 +230,8 @@ public class Controller implements Initializable {
     @FXML void dataSourceBtn_OnAction(){
 
         try {
+
+            // load and show the data source window
             stage = new Stage();
             root = FXMLLoader.load(getClass().getResource("dataSourceWindow.fxml"));
             stage.setScene(new Scene(root));
@@ -246,7 +248,6 @@ public class Controller implements Initializable {
         } // try
 
     } // dataSourceBtn_OnAction()
-
 
     // evaluate button on click event handler
     @FXML void evaluateBtn_OnAction(){
