@@ -17,6 +17,16 @@ public class DataFactory {
 
     } // getInstance()
 
+    public DataSourceable getDataSource(){
 
+        DataSourceable dataSource = null;
+
+        // create the data source
+        dataSource = new TestDataSourceImp();
+
+        // return the data source
+        return dataSource;
+
+    } // getDataSource()
 
 } // class

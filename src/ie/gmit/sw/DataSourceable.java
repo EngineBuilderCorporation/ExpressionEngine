@@ -12,4 +12,8 @@ public interface DataSourceable {
     // use generics so anything can be returned
     public <K, V> Map<K, V> getData();
 
+    // methods for setting and getting the name of the data source
+    public String getName();
+    public void setName(String name);
+
 } // interface

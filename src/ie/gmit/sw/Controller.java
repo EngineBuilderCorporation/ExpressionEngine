@@ -8,6 +8,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.*;
 
+import javax.xml.crypto.Data;
 import java.net.URL;
 import java.util.*;
 
@@ -43,8 +44,8 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        // hide label by default
-        selectedLB.setVisible(false);
+        // setup the data sources
+        setupDataSources();
 
         int startIndex = 0;
 
@@ -93,6 +94,26 @@ public class Controller implements Initializable {
         commandSelection.getSelectionModel().selectFirst();
 
     } // initialize()
+
+    // sets up the data sources. To be called in initialize() method.
+    private void setupDataSources(){
+
+        // hide label by default
+        selectedLB.setVisible(false);
+
+        // get instance of data source factory
+        DataFactory factory = DataFactory.getInstance();
+
+        // get an instance of data source
+        DataSourceable dataSource = factory.getDataSource();
+
+        // set drop down items
+        testCB.setItems(FXCollections.observableArrayList(dataSource.getData().keySet()));
+
+        // select first by default
+        testCB.getSelectionModel().selectFirst();
+
+    } // setupDataSources()
 
     // replaces the contents of a column
     public void updateColumn(int index, Node node){
