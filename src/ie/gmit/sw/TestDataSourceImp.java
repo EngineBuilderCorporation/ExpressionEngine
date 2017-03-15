@@ -13,12 +13,7 @@ public class TestDataSourceImp implements DataSourceable {
 
     private Map<String, Integer> data = new HashMap<>();
 
-    private String name;
-
     public TestDataSourceImp(){
-
-        // set the name of the data source
-        setName("Working Abroad");
 
         // add test data to map
         data.put("Days in Country", 100);
@@ -38,13 +33,5 @@ public class TestDataSourceImp implements DataSourceable {
         return this.data;
 
     } // getData()
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
 } // class

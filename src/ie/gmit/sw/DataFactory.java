@@ -37,6 +37,12 @@ public class DataFactory {
 
             break;
 
+            case "SQL - Production":
+
+                // create the data source
+                dataSource = new SQLProductionImp();
+                break;
+
             default:
 
                 // create the data source
