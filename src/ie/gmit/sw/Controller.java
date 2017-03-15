@@ -26,6 +26,8 @@ public class Controller implements Initializable {
     @FXML private ComboBox<String> commandSelection;
     @FXML private Label messageLabel;
 
+    @FXML private ComboBox testCB;
+
     Stage stage;
     Parent root;
 
@@ -245,7 +247,7 @@ public class Controller implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("dataSourceWindow.fxml"));
 
             // load the resources
-            root = loader.load(); //FXMLLoader.load(getClass().getResource("dataSourceWindow.fxml"));
+            root = loader.load();
 
             // get handle on Data source controller
             DataSourceController controller = loader.getController();
