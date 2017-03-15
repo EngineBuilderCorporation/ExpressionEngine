@@ -26,8 +26,11 @@ public class DataSourceController implements Initializable {
         // set cell factory
         tableCol.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue()));
 
+        // get the list of data source names
+        DataFactory factory = DataFactory.getInstance();
+
         // create list of items
-        ObservableList<String> items = FXCollections.observableArrayList("Itachi", "Test", "Test2");
+        ObservableList<String> items = FXCollections.observableArrayList(factory.getDataSourceNames());
 
         // add items to table
         table.setItems(items);

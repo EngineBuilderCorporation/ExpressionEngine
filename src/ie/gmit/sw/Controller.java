@@ -32,7 +32,9 @@ public class Controller implements Initializable {
     Stage stage;
     Parent root;
 
-    private String dataSource;
+    private String dataSourceName;
+    private DataFactory dataFactory = DataFactory.getInstance();
+    private DataSourceable dataSource = null;
 
     private Ruleable rule = null;
     private UIExpressionTree uiRoot = null;
@@ -44,8 +46,17 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        // setup the data sources
-        setupDataSources();
+        // setup test combo box
+        testCB.setVisible(false);
+        testCB.valueProperty().addListener((ov, oldVal, newVal) ->{
+
+            if(dataSource != null)
+                System.out.println("Value for " + newVal + ": " + dataSource.getData().get(newVal));
+
+        });
+
+        // hide label by default
+        selectedLB.setVisible(false);
 
         int startIndex = 0;
 
@@ -96,16 +107,10 @@ public class Controller implements Initializable {
     } // initialize()
 
     // sets up the data sources. To be called in initialize() method.
-    private void setupDataSources(){
-
-        // hide label by default
-        selectedLB.setVisible(false);
-
-        // get instance of data source factory
-        DataFactory factory = DataFactory.getInstance();
+    private void setupDataSources(String name){
 
         // get an instance of data source
-        DataSourceable dataSource = factory.getDataSource();
+        dataSource = dataFactory.getDataSource(name);
 
         // set drop down items
         testCB.setItems(FXCollections.observableArrayList(dataSource.getData().keySet()));
@@ -292,16 +297,22 @@ public class Controller implements Initializable {
 
     } // dataSourceBtn_OnAction()
 
-    public void setSelectedDataSource(String dataSource){
+    public void setSelectedDataSource(String dataSourceName){
 
         // save the selected data source
-        this.dataSource = dataSource;
+        this.dataSourceName = dataSourceName;
 
-        System.out.println("Data Source Selected: " + dataSource);
+        System.out.println("Data Source Selected: " + dataSourceName);
 
         // do data source setup
         selectedLB.setVisible(true);
-        selectedDataSourceLB.setText(dataSource);
+        selectedDataSourceLB.setText(dataSourceName);
+
+        // setup the data sources
+        setupDataSources(dataSourceName);
+
+        // show drop down
+        testCB.setVisible(true);
 
     } // setSelectedDataSource()
 
