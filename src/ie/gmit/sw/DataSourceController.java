@@ -17,7 +17,7 @@ public class DataSourceController implements Initializable {
     @FXML private TableColumn<String, String> tableCol;
     @FXML private Button selectBtn;
 
-    private Controller controller;
+    private Controller controller; // main app controller
 
 
     // initialise UI here
@@ -29,7 +29,7 @@ public class DataSourceController implements Initializable {
         // get the list of data source names
         DataFactory factory = DataFactory.getInstance();
 
-        // create list of items
+        // create list of items, getting the names from the data source factory
         ObservableList<String> items = FXCollections.observableArrayList(factory.getDataSourceNames());
 
         // add items to table
@@ -52,17 +52,16 @@ public class DataSourceController implements Initializable {
 
     } // selectBtn_OnAction()
 
-
     // gets the selected data source
     public String getSelectedDataSource(){
 
         return table.getSelectionModel().getSelectedItem().toString();
-    }
+    } // getSelectedDataSource()
 
     // method to save the reference to the main controller
     public void setMainController(Controller controller){
 
         this.controller = controller;
-    }
+    } // setMainController()
 
 } // class
