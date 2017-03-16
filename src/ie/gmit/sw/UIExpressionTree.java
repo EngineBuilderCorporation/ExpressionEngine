@@ -6,6 +6,8 @@ import javafx.scene.control.*;
 
 /**
  * Created by Ross Byrne on 26/02/17.
+ * Handles building the UI expression and uses the values entered
+ * to recursively build an expression tree that can be evaluated.
  */
 public class UIExpressionTree {
 
@@ -14,13 +16,14 @@ public class UIExpressionTree {
     private Label operLabel;
     private Object paramX = null;
     private Object paramY = null;
+    private String selectedDataSource;
 
     private boolean operSet = false;
     private Label leftBracket = new Label("(");
     private Label rightBracket = new Label(")");
 
 
-    public UIExpressionTree(Controller controller, int startIndex, boolean update){
+    public UIExpressionTree(Controller controller, String selectedDataSource, int startIndex, boolean update){
 
         // set the width of the operator
         oper.setPrefWidth(90);
@@ -238,6 +241,8 @@ public class UIExpressionTree {
         int index;
         boolean paramsNull;
 
+        // checks if the parameters are created or not
+        // creates operator differently depending on if parameters are created or not
         if(paramX == null && paramY == null){
 
             paramsNull = true;
@@ -254,9 +259,9 @@ public class UIExpressionTree {
 
         // create parameters as UIExpressionTree Objects to create a tree structure
         if(paramsNull == true)
-            paramX = new UIExpressionTree(controller, index, false);
+            paramX = new UIExpressionTree(controller, selectedDataSource, index, false);
         else
-            paramX = new UIExpressionTree(controller, index - 1, true);
+            paramX = new UIExpressionTree(controller, selectedDataSource, index - 1, true);
 
         // get the index of the operator
         if(paramsNull == true)
@@ -265,9 +270,9 @@ public class UIExpressionTree {
             index = controller.getNodesColumnIndex(operLabel);
 
         if(paramsNull == true)
-            paramY = new UIExpressionTree(controller, index + 1, false);
+            paramY = new UIExpressionTree(controller, selectedDataSource, index + 1, false);
         else
-            paramY = new UIExpressionTree(controller, index + 1, true);
+            paramY = new UIExpressionTree(controller, selectedDataSource, index + 1, true);
 
     } // createOperators()
 

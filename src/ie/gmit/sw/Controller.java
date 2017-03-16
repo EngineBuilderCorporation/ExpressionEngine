@@ -61,7 +61,7 @@ public class Controller implements Initializable {
         int startIndex = 0;
 
         // initialise the root for the UIExpressionTree
-        uiRoot = new UIExpressionTree(this, startIndex, false);
+        uiRoot = new UIExpressionTree(this, dataSourceName, startIndex, false);
 
         // Create notify object
         notify = new NotificationController();
