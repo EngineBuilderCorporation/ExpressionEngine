@@ -109,7 +109,7 @@ public class UIExpressionTree {
     } // constructor
 
     // Recursive method to build the expression tree so it can be evaluated
-    public Expressionable buildExpressionTree(){
+    public Expressionable buildExpressionTree() throws Exception {
 
         Expressionable ex = null;
 
@@ -172,7 +172,8 @@ public class UIExpressionTree {
 
         } else {
 
-            // something went wrong
+            // something went wrong, throw an exception
+            throw new Exception();
 
         } // if
 
