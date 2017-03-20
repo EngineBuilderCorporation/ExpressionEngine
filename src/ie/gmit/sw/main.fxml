@@ -51,12 +51,11 @@
       </Label>
       <Label fx:id="messageLabel" layoutX="289.0" layoutY="359.0" AnchorPane.bottomAnchor="126.0" AnchorPane.leftAnchor="289.0" />
       <Button fx:id="dataSourceBtn" layoutX="17.0" layoutY="24.0" mnemonicParsing="false" onAction="#dataSourceBtn_OnAction" text="Select Data Source" AnchorPane.leftAnchor="17.0" AnchorPane.topAnchor="24.0" />
-      <Label fx:id="selectedDataSourceLB" layoutX="238.0" layoutY="31.0" prefHeight="15.0" prefWidth="198.0" AnchorPane.leftAnchor="238.0" AnchorPane.topAnchor="31.0" />
+      <Label fx:id="selectedDataSourceLB" layoutX="238.0" layoutY="31.0" prefHeight="15.0" prefWidth="525.0" AnchorPane.leftAnchor="238.0" AnchorPane.topAnchor="31.0" />
       <Label fx:id="selectedLB" layoutX="168.0" layoutY="30.0" text="Selected:" AnchorPane.leftAnchor="168.0" AnchorPane.topAnchor="30.0">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <ComboBox fx:id="testCB" layoutX="513.0" layoutY="27.0" prefWidth="150.0" />
    </children>
 </AnchorPane>

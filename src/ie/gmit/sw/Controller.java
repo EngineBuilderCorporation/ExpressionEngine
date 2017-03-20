@@ -27,8 +27,6 @@ public class Controller implements Initializable {
     @FXML private ComboBox<String> commandSelection;
     @FXML private Label messageLabel;
 
-    @FXML private ComboBox testCB;
-
     Stage stage;
     Parent root;
 
@@ -46,22 +44,8 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        // setup test combo box
-        testCB.setVisible(false);
-        testCB.valueProperty().addListener((ov, oldVal, newVal) ->{
-
-            if(dataSource != null)
-                System.out.println("Value for " + newVal + ": " + dataSource.getData().get(newVal));
-
-        });
-
         // hide label by default
         selectedLB.setVisible(false);
-
-        int startIndex = 0;
-
-        // initialise the root for the UIExpressionTree
-        uiRoot = new UIExpressionTree(this, dataSourceName, startIndex, false);
 
         // Create notify object
         notify = new NotificationController();
@@ -106,17 +90,13 @@ public class Controller implements Initializable {
 
     } // initialize()
 
-    // sets up the data sources. To be called in initialize() method.
+    // sets up the UI for the expression builder, using the selected data source
     private void setupDataSources(String name){
 
-        // get an instance of data source
-        dataSource = dataFactory.getDataSource(name);
+        int startIndex = 0;
 
-        // set drop down items
-        testCB.setItems(FXCollections.observableArrayList(dataSource.getData().keySet()));
-
-        // select first by default
-        testCB.getSelectionModel().selectFirst();
+        // initialise the root for the UIExpressionTree
+        uiRoot = new UIExpressionTree(this, dataSourceName, startIndex, false);
 
     } // setupDataSources()
 
@@ -203,13 +183,13 @@ public class Controller implements Initializable {
                 } else {
 
                     // set width of column
-                    columnConstraints.setPrefWidth(100);
+                    columnConstraints.setPrefWidth(40);
                 } // if
 
             } else {
 
                 // set width of column
-                columnConstraints.setPrefWidth(100);
+                columnConstraints.setPrefWidth(124);
             }
 
             // set column to never grow
@@ -302,7 +282,7 @@ public class Controller implements Initializable {
         // save the selected data source
         this.dataSourceName = dataSourceName;
 
-        System.out.println("Data Source Selected: " + dataSourceName);
+        //System.out.println("Data Source Selected: " + dataSourceName);
 
         // do data source setup
         selectedLB.setVisible(true);
@@ -311,8 +291,8 @@ public class Controller implements Initializable {
         // setup the data sources
         setupDataSources(dataSourceName);
 
-        // show drop down
-        testCB.setVisible(true);
+        // disable the select data source button
+        dataSourceBtn.setDisable(true);
 
     } // setSelectedDataSource()
 
@@ -351,9 +331,9 @@ public class Controller implements Initializable {
             
         } catch (Exception e){
 
-            //e.printStackTrace();
+           // e.printStackTrace();
             // reset values
-            errorLabel.setText("Error with parameters, enter numbers!");
+            errorLabel.setText("An Error Occurred!");
 
         } // try
 

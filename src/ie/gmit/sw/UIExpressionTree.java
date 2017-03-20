@@ -16,6 +16,8 @@ public class UIExpressionTree {
     private Label operLabel;
     private Object paramX = null;
     private Object paramY = null;
+    private DataFactory dataFactory = DataFactory.getInstance();
+    private DataSourceable dataSource = null;
     private String selectedDataSource;
 
     private boolean operSet = false;
@@ -29,6 +31,10 @@ public class UIExpressionTree {
         oper.setPrefWidth(90);
 
         this.controller = controller;
+        this.selectedDataSource = selectedDataSource;
+
+        // get instance of data source
+        dataSource = dataFactory.getDataSource(selectedDataSource);
 
         // set the options for the operators comboBox
         oper.setItems(FXCollections.observableArrayList(
@@ -54,8 +60,8 @@ public class UIExpressionTree {
                     case ">":
                     case "<":
 
-                        // create textFields as parameters
-                        createTextFields();
+                        // create combo boxes as parameters
+                        createDataDropDowns();
                         break;
                     case "AND":
                     case "OR":
@@ -143,6 +149,33 @@ public class UIExpressionTree {
             // create expression from parameters
             ex.setExpression(paramX, paramY, operator);
 
+        } else if(paramX instanceof ComboBox) { // if the parameters are combo boxes
+
+            ex = new Expression();
+
+            // create parameter for paramX, paramY and operator
+            Parameterable paramX = new ParameterImpl();
+            Parameterable paramY = new ParameterImpl();
+            Parameterable operator = new ParameterImpl();
+
+            // get combo box from ParamX
+            ComboBox c = (ComboBox) getParamX();
+
+            // set the value of the parameter from the select value in the combo box
+            paramX.setParameter(dataSource.getData().get(c.getSelectionModel().getSelectedItem()), ParameterType.NUMBER);
+
+            // get TextField from paramY
+            c = (ComboBox) getParamY();
+
+            // set the value of the parameter from the select value in the combo box
+            paramY.setParameter(dataSource.getData().get(c.getSelectionModel().getSelectedItem()), ParameterType.NUMBER);
+
+            // Set the value of the operator from the selected item in combo box
+            operator.setParameter(operLabel.getText(), ParameterType.OPERATOR);
+
+            // create expression from parameters
+            ex.setExpression(paramX, paramY, operator);
+
         } else if(paramX instanceof UIExpressionTree) { // if the parameters are UIExpressionTree objects
 
             ex = new Expression();
@@ -183,7 +216,6 @@ public class UIExpressionTree {
         return ex;
 
     } // buildExpressionTree()
-
 
     // Creates TextFields and sets them to paramX and paramY
     // then adds them into the grid on the right and left hand side of the operator
@@ -233,6 +265,67 @@ public class UIExpressionTree {
             controller.updateColumn(index + 1, (Node)paramY);
 
     } // createTextFields()
+
+    // Creates Drop downs and sets them to paramX and paramY
+    // then adds them into the grid on the right and left hand side of the operator
+    private void createDataDropDowns(){
+
+        boolean paramsNull;
+
+        if(paramX == null && paramY == null){
+            paramsNull = true;
+        }
+        else{
+            paramsNull = false;
+        }
+
+        // create parameters as Combo box
+        ComboBox c = new ComboBox();
+        c.setPrefWidth(120);
+
+        // set drop down items
+        c.setItems(FXCollections.observableArrayList(dataSource.getData().keySet()));
+
+        // select first by default
+        c.getSelectionModel().selectFirst();
+
+        // set value for paramX
+        paramX = c;
+
+        // create combo box
+        c = new ComboBox();
+        c.setPrefWidth(120);
+
+        // set drop down items
+        c.setItems(FXCollections.observableArrayList(dataSource.getData().keySet()));
+
+        // select first by default
+        c.getSelectionModel().selectFirst();
+
+        // set value for paramY
+        paramY = c;
+
+        int index;
+
+        // get the index of the operator in the grid
+        index = controller.getNodesColumnIndex(oper);
+
+        // update the column left of operator to be paramX
+        if(paramsNull == true)
+            controller.addColumn(index, (Node)paramX);
+        else
+            controller.updateColumn(index - 1, (Node)paramX);
+
+        // get the index of the operator in the grid
+        index = controller.getNodesColumnIndex(oper);
+
+        // update the column right for operator with paramY
+        if(paramsNull == true)
+            controller.addColumn(index + 1, (Node)paramY);
+        else
+            controller.updateColumn(index + 1, (Node)paramY);
+
+    } // createDataDropDowns()
 
     // Creates UIExpressionTree Objects and sets them to paramX and paramY
     // then adds them into the grid on the right and left hand side of the operator
@@ -304,8 +397,8 @@ public class UIExpressionTree {
                     break;
                 case "Number":
 
-                    // create textfields as parameters
-                    createTextFields();
+                    // create combo boxes as parameters
+                    createDataDropDowns();
                     break;
             } // switch
 
