@@ -4,7 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by rossbyrne on 15/03/17.
+ * Created by Ross Byrne on 15/03/17.
+ *
+ * Simulates a data source. Information could be pulled from a SQL database
+ * and placed in the data Map.
  */
 public class SQLProductionImp implements DataSourceable {
 
