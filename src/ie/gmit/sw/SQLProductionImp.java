@@ -13,11 +13,11 @@ public class SQLProductionImp implements DataSourceable {
     public SQLProductionImp(){
 
         // add test data to map
-        data.put("Cars Owned", 40);
-        data.put("Boats Owned", 10);
-        data.put("Tractors Owned", 20);
-        data.put("Motorcycles Owned", 15);
-        data.put("Bicycles Owned", 22);
+        data.put("Current Country", 13);    // represents country code
+        data.put("Ireland", 13);            // represents a selected country
+        data.put("Threshold", 183);         // the tax threshold for that country
+        data.put("Days Worked", 170);       // number of days worked in country
+        data.put("Notification Limit", 146);// 80% of threshold days for country
 
     } // constructor
 
