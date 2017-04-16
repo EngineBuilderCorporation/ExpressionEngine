@@ -1,7 +1,5 @@
 package ie.gmit.sw;
 
-import java.util.*;
-
 /**
  * Created by Ross Byrne on 23/01/17.
  */
