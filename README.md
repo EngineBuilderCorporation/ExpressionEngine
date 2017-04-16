@@ -9,5 +9,13 @@ The project is in an IntelliJ IDEA project solution. For more on IntelliJ IDEA, 
 
 The source code can be run by compiling and running Main.java in the package ie.gmit.sw. This will start the application.
 
+To compile the source code from the terminal or command line, navigate to the src folder and run:
+```
+javac ie/gmit/sw/*.java
+```
+To start the application, run:
+```
+java ie.gmit.sw.Main
+```
 # Design
  
