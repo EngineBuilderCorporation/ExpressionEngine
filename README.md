@@ -19,7 +19,7 @@ java ie.gmit.sw.Main
 ```
 # Design
 
-![Screenshot](Expressionable-Parameterable.png)
+![Expression UML Diagram](imgs/Expressionable-Parameterable.png)
 
 
  
