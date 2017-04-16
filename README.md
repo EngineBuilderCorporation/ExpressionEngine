@@ -18,8 +18,22 @@ To start the application, run:
 java ie.gmit.sw.Main
 ```
 # Design
+The design of the application comes down to three main sections. The expression binary tree, the UI binary tree and the command objects.
+
+## The Expression Binary Tree
+
+A UML diagram of the expression binary tree that creates and evaluates expressions:
 
 ![Expression UML Diagram](imgs/Expressionable-Parameterable.png)
+
+## The UI Binary Tree
+
+A UML diagram of the binary tree that builds the UI elements for the user as they create their expression and then creates the expression binary tree based on what the user created. Also includes the factory for retrieving the data that is used in the expression.
+
+![UIExpression UML Diagram](imgs/UIExpressionTree-DataFactory.png)
+
+## The Command Objects
+
 
 
  
