@@ -6,6 +6,7 @@
 **Student IDs:** G00310619, G00214065 <br />
 **Module:** Applied Project <br />
 **Supervisor:** Dr John Healy <br />
+**GitHub:** https://github.com/EngineBuilderCorporation/ExpressionEngine <br />
 
 # Introduction
 
