@@ -223,6 +223,22 @@ _UML diagram of the UI expression binary tree_
 
 Running a command based on the result of the expression evaluation is optional but still a desireable feature. Once an expression is created, the user can select a command that they want to run. The user can then select if they want the command to run, depending on if the expression evaluates as either true or false. As the commands are implemented with the Command pattern, additional commands can be added with ease. This is important because the commands that are required could change or the scope of the application could be increased. The commands that are implemented in the project are currently just placeholders. Later, the application can be extended and commands with the required functionality can be implemented.
 
+_Notification controller to easily allow notifications to be sent in different forms_
+```Java
+ Command notification;
 
+    public NotificationController(){}
+
+    public void setCommand(Command command)
+    {
+        this.notification = command;
+    }
+
+    // mimic button being pressed
+    public void buttonPresssed()
+    {
+        notification.execute();
+    }
+```
 
  
