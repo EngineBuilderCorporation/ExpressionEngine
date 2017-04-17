@@ -82,7 +82,14 @@ Project
 
 # Features
 
-## Design
+## Design Patterns
+The project makes use of many design patterns which makes the program more user friendly for the future developers who have to adapt the program. By using design patterns the program is easier to understand due to the abilty to picture the high level design in their head. The overall program is also easier to maintain which could prove to be very important to future users. The patterns used in this program are as follows:
+
+* The singleton factory pattern
+* The Command pattern
+* The Composite pattern
+
+## Program Design
 The design of the application comes down to three main sections. 
 
 * Expression binary tree  
