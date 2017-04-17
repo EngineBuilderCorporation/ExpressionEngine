@@ -48,9 +48,9 @@ java ie.gmit.sw.Main
 # Design Features
 The design of the application comes down to three main sections. 
 
-*Expression binary tree  
-*UI binary tree
-*Command objects.
+* Expression binary tree  
+* UI binary tree
+* Command objects.
 
 ## The Expression Binary Tree
 
