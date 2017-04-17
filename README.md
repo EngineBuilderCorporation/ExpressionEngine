@@ -45,8 +45,12 @@ java ie.gmit.sw.Main
 **Programming Language:** Java 8 <br />
 **UML Generator:** Violet UML Editor
 
-# Design
-The design of the application comes down to three main sections. The expression binary tree, the UI binary tree and the command objects.
+# Design Features
+The design of the application comes down to three main sections. 
+
+*Expression binary tree  
+*UI binary tree
+*Command objects.
 
 ## The Expression Binary Tree
 
