@@ -45,6 +45,33 @@ java ie.gmit.sw.Main
 **Programming Language:** Java 8 <br />
 **UML Generator:** Violet UML Editor
 
+# Package Structure
+
+```
+Project
+|---------------------------------|
+|----controller                   |
+|    |-- Afferent.java            |
+|    |-- Calculator.java          |
+|    |-- ClassHandler.java        |
+|    |-- ClassSet.java            |
+|    |-- DatabaseOperations.java  |
+|    |-- Efferent.java            |
+|    |-- Loadable.java            |
+|    |-- LoadJarClasses.java      |
+|    |-- Measurement.java         |
+|    |-- Result.java              |
+|    |-- SingletonRecord.java     |
+|                                 |
+|----model                        |
+|    |-- DatabaseRecord.java      |
+|                                 |
+|----view                         |
+|    |-- UserView.java            |
+|---------------------------------|
+
+```
+
 # Design Features
 The design of the application comes down to three main sections. 
 
