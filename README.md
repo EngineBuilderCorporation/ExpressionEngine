@@ -1,5 +1,9 @@
 # Expression Engine
-Ross Byrne and Christy Madden's main 4th year project.
+
+**Student Name:** Ross Byrne and Christy Madden <br />
+**Student ID:** G00310619, G00214065 <br />
+**Module:** Applied Project <br />
+**Supervisor:** Dr John Healy <br />
 
 # Introduction
 The expression engine is an expression builder. It allows users to build any expression with the use of the AND, OR, >, < and Equals operators. The data used in the expressions can be pulled from any data source provided they are implemented. Currently, the values that are evaluated are positive and negative decimal and integer values. Once the expression is built, the user can select to run a command. The user can choose whether they want to the command to run if the expression evaluates as either True or False.
