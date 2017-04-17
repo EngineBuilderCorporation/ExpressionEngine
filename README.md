@@ -93,6 +93,18 @@ The design of the application comes down to three main sections.
 
 To make the design as extensible as possible, a binary tree was created that allows for any operator or value to be added. For the scope of the project, the operators AND, OR, >, < and equals were implemented. The values that are evaluated with these operators are positive and negative decimals and integers. With the current design, other operators such as addition, subtraction, multiplication and division could also be implemented very easily. With the current implementation, any decimal or integer values can be pulled from a database and used in an expression. Once the expression tree is built, it recursively evaluates itself.
 
+```Java
+public interface Parameterable {
+
+    public Object getParameter();
+
+    public boolean setParameter(Object parameter, ParameterType type);
+
+    public ParameterType getParameterType();
+
+} // interface
+```
+
 A UML diagram of the expression binary tree that creates and evaluates expressions can be seen below:
 
 ![Expression UML Diagram](imgs/Expressionable-Parameterable.png)
