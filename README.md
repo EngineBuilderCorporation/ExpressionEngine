@@ -241,4 +241,18 @@ _Notification controller to easily allow notifications to be sent in different f
     }
 ```
 
+_Email notificaitons are an example of notifications that can be sent throungh the command pattern_
+```Java
+ Email email;
+
+    public EmailCommand(Email email)
+    {
+        this.email = email;
+    }
+
+    public void execute()
+    {
+        email.sendEmail();
+    }
+```
  
