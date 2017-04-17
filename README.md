@@ -170,7 +170,7 @@ public boolean setParameter(Object parameter, ParameterType type) {
     }
 ```
 
-A UML diagram of the expression binary tree that creates and evaluates expressions can be seen below:
+_UML diagram of the expression binary tree that creates and evaluates expressions_
 
 ![Expression UML Diagram](imgs/Expressionable-Parameterable.png)
 
@@ -215,6 +215,7 @@ _Building the expression tree_
 
         }
 ```
+_UML diagram of the UI expression binary tree_
 
 ![UIExpression & DataFactory UML Diagram](imgs/UIExpressionTree-DataFactory.png)
 
