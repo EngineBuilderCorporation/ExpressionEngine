@@ -33,6 +33,16 @@ To start the application, run:
 ```
 java ie.gmit.sw.Main
 ```
+
+# Technologies used
+
+**Operating System:** Ubuntu, Linux Mint 17.3 “Rosa” <br />
+**IDE:** IntelliJ IDEA 4.6.2 <br />
+**Software Version Control:** Git 1.9.1 <br />
+**Hosting Site:** GitHub <br />
+**Programming Language:** Java 8 <br />
+**UML Generator:** 
+
 # Design
 The design of the application comes down to three main sections. The expression binary tree, the UI binary tree and the command objects.
 
