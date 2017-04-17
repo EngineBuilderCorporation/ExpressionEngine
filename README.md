@@ -178,6 +178,44 @@ A UML diagram of the expression binary tree that creates and evaluates expressio
 
 For dynamically creating UI elements, as a user creates an expression, a tree structure was created. This binary tree keeps track of the expression the user is building and generates the required UI elements. The UML diagram for this class can be seen below. This class, called UIExpressionTree, keeps track of the expression as it is built, to generate the correct UI elements. It also uses a factory that gets data from a data source. This data source can obtain data from anywhere, it just needs to be implemented using the DataSourceabe interface and then added to the DataFactory. This allows for a wide variety of possible data sources to be implemented. Once the expression is built and ready to be evaluated, the UIExpressionTree can recursively build an expression tree, using the values selected in the UI. The expression can then be evaluated.
 
+_Building the expression tree_
+
+```Java
+// Recursive method to build the expression tree so it can be evaluated
+    public Expressionable buildExpressionTree() throws Exception {
+
+        Expressionable ex = null;
+
+        if(paramX instanceof TextField){ // if the parameters are textFields
+
+            ex = new Expression();
+
+            // create parameter for paramX, paramY and operator
+            Parameterable paramX = new ParameterImpl();
+            Parameterable paramY = new ParameterImpl();
+            Parameterable operator = new ParameterImpl();
+
+            // get TextField from ParamX
+            TextField t = (TextField)getParamX();
+
+            // set the value of the parameter from the UI textField
+            paramX.setParameter(t.getText(), ParameterType.NUMBER);
+
+            // get TextField from paramY
+            t = (TextField)getParamY();
+
+            // set the value of the parameter from the UI textField
+            paramY.setParameter(t.getText(), ParameterType.NUMBER);
+
+            // Set the value of the operator from the selected item in combo box
+            operator.setParameter(operLabel.getText(), ParameterType.OPERATOR);
+
+            // create expression from parameters
+            ex.setExpression(paramX, paramY, operator);
+
+        }
+```
+
 ![UIExpression & DataFactory UML Diagram](imgs/UIExpressionTree-DataFactory.png)
 
 ## The Command Objects
