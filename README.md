@@ -45,30 +45,38 @@ java ie.gmit.sw.Main
 **Programming Language:** Java 8 <br />
 **UML Generator:** Violet UML Editor
 
-# Package Structure
+# Package Contents
 
 ```
 Project
-|---------------------------------|
-|----controller                   |
-|    |-- Afferent.java            |
-|    |-- Calculator.java          |
-|    |-- ClassHandler.java        |
-|    |-- ClassSet.java            |
-|    |-- DatabaseOperations.java  |
-|    |-- Efferent.java            |
-|    |-- Loadable.java            |
-|    |-- LoadJarClasses.java      |
-|    |-- Measurement.java         |
-|    |-- Result.java              |
-|    |-- SingletonRecord.java     |
-|                                 |
-|----model                        |
-|    |-- DatabaseRecord.java      |
-|                                 |
-|----view                         |
-|    |-- UserView.java            |
-|---------------------------------|
+|-----------------------------------|
+|----ie.gmit.sw                     |
+|    |-- Command.java               |
+|    |-- Controller.java            |
+|    |-- DataFactory.java           |
+|    |-- DataSourceable.java        |
+|    |-- DataSourceController.java  |
+|    |-- dataSourceWindow.fxml      |
+|    |-- Email.java                 |
+|    |-- EmailCommand.java          |
+|    |-- Expression.java            |
+|    |-- Expressionable.java        |
+|    |-- Main.java                  |
+|    |-- Main.fxml                  |
+|    |-- MobileMessage.java         |
+|    |-- MobileMessageCommand       |
+|    |-- NotificationController     |
+|    |-- Parameterable.java         |
+|    |-- ParameterImpl.java         |
+|    |-- ParameterType.java         |
+|    |-- Ruleable.java              |
+|    |-- RuleImpl.java              |
+|    |-- SQLProductionImp.java      |
+|    |-- TestDataSourceImp.java     |
+|    |-- UIExpressionTree.java      |
+|    |-- WebMessage.java            |
+|    |-- WebMessageCommand.java     |
+|-----------------------------------|
 
 ```
 
