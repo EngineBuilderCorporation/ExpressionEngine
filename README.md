@@ -1,7 +1,7 @@
 # Expression Engine
 
-**Student Name:** Ross Byrne and Christy Madden <br />
-**Student ID:** G00310619, G00214065 <br />
+**Student Names:** Ross Byrne, Christy Madden <br />
+**Student IDs:** G00310619, G00214065 <br />
 **Module:** Applied Project <br />
 **Supervisor:** Dr John Healy <br />
 
