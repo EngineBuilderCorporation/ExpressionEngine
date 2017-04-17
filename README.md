@@ -93,6 +93,8 @@ The design of the application comes down to three main sections.
 
 To make the design as extensible as possible, a binary tree was created that allows for any operator or value to be added. For the scope of the project, the operators AND, OR, >, < and equals were implemented. The values that are evaluated with these operators are positive and negative decimals and integers. With the current design, other operators such as addition, subtraction, multiplication and division could also be implemented very easily. With the current implementation, any decimal or integer values can be pulled from a database and used in an expression. Once the expression tree is built, it recursively evaluates itself.
 
+_Interfaces are used to keep the program loosely coupled_
+
 ```Java
 public interface Parameterable {
 
@@ -103,6 +105,69 @@ public interface Parameterable {
     public ParameterType getParameterType();
 
 } // interface
+```
+
+_How the parameter is set_
+
+```Java
+public boolean setParameter(Object parameter, ParameterType type) {
+
+        // make sure the variable given is actually the type specified
+
+        try {
+
+            switch (type){
+                case NUMBER:
+                    // try parse to number
+                    Double.parseDouble(parameter.toString());
+                    break;
+                case OPERATOR:
+                    // do something with operator
+
+                    if( parameter.toString() == ">" ||
+                        parameter.toString() == "<" ||
+                        parameter.toString() == "==" ||
+                        parameter.toString() == "AND" ||
+                        parameter.toString() == "OR"
+                    ){
+                        // ok, save them
+                    } else {
+                        // not ok, return
+                        return false;
+                    } // if
+
+                    break;
+                case EXPRESSION:
+
+                    // make sure the object is a parameter
+                    if(parameter instanceof Expressionable){
+
+                        // save object
+                    } else {
+
+                        return false;
+                    }
+                    break;
+            } // switch
+            // if it hasn't crashed by now, save values
+
+            // save type
+            setParameterType(type);
+
+            // save parameter
+            this.parameter = parameter;
+
+            // operation successful
+            return true;
+
+        } catch(Exception e){
+
+            // type of value is not correct
+            // operation failed
+            return false;
+
+        } // try
+    }
 ```
 
 A UML diagram of the expression binary tree that creates and evaluates expressions can be seen below:
