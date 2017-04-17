@@ -38,12 +38,12 @@ java ie.gmit.sw.Main
 
 # Technologies used
 
-**Operating System:** Ubuntu, Linux Mint 17.3 “Rosa” <br />
-**IDE:** IntelliJ IDEA 4.6.2 <br />
+**Operating System:** Ubuntu 16.04 LTS, Linux Mint 17.3 “Rosa” <br />
+**IDE:** IntelliJ IDEA 2017.1.1 <br />
 **Software Version Control:** Git 1.9.1 <br />
 **Hosting Site:** GitHub <br />
 **Programming Language:** Java 8 <br />
-**UML Generator:** 
+**UML Generator:** Violet UML Editor
 
 # Design
 The design of the application comes down to three main sections. The expression binary tree, the UI binary tree and the command objects.
