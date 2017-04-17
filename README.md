@@ -1,3 +1,5 @@
+<div align="center"><img src ="https://github.com/EngineBuilderCorporation/ExpressionEngine/blob/master/gmit-logo.jpg"/></div>
+
 # Expression Engine
 
 **Student Names:** Ross Byrne, Christy Madden <br />
