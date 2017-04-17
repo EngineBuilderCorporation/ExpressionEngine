@@ -96,7 +96,7 @@ The design of the application comes down to three main sections.
 * UI binary tree
 * Command objects.
 
-## The Expression Binary Tree
+### The Expression Binary Tree
 
 To make the design as extensible as possible, a binary tree was created that allows for any operator or value to be added. For the scope of the project, the operators AND, OR, >, < and equals were implemented. The values that are evaluated with these operators are positive and negative decimals and integers. With the current design, other operators such as addition, subtraction, multiplication and division could also be implemented very easily. With the current implementation, any decimal or integer values can be pulled from a database and used in an expression. Once the expression tree is built, it recursively evaluates itself.
 
@@ -181,7 +181,7 @@ _UML diagram of the expression binary tree that creates and evaluates expression
 
 ![Expression UML Diagram](imgs/Expressionable-Parameterable.png)
 
-## The UI Binary Tree
+### The UI Binary Tree
 
 For dynamically creating UI elements, as a user creates an expression, a tree structure was created. This binary tree keeps track of the expression the user is building and generates the required UI elements. The UML diagram for this class can be seen below. This class, called UIExpressionTree, keeps track of the expression as it is built, to generate the correct UI elements. It also uses a factory that gets data from a data source. This data source can obtain data from anywhere, it just needs to be implemented using the DataSourceabe interface and then added to the DataFactory. This allows for a wide variety of possible data sources to be implemented. Once the expression is built and ready to be evaluated, the UIExpressionTree can recursively build an expression tree, using the values selected in the UI. The expression can then be evaluated.
 
@@ -226,7 +226,7 @@ _UML diagram of the UI expression binary tree_
 
 ![UIExpression & DataFactory UML Diagram](imgs/UIExpressionTree-DataFactory.png)
 
-## The Command Objects
+### The Command Objects
 
 Running a command based on the result of the expression evaluation is optional but still a desireable feature. Once an expression is created, the user can select a command that they want to run. The user can then select if they want the command to run, depending on if the expression evaluates as either true or false. As the commands are implemented with the Command pattern, additional commands can be added with ease. This is important because the commands that are required could change or the scope of the application could be increased. The commands that are implemented in the project are currently just placeholders. Later, the application can be extended and commands with the required functionality can be implemented.
 
