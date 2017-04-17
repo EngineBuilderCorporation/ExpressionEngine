@@ -80,7 +80,9 @@ Project
 
 ```
 
-# Design Features
+# Features
+
+## Design
 The design of the application comes down to three main sections. 
 
 * Expression binary tree  
