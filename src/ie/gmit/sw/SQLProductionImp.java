@@ -16,11 +16,17 @@ public class SQLProductionImp implements DataSourceable {
     public SQLProductionImp(){
 
         // add test data to map
-        data.put("Current Country", 13);    // represents country code
+        data.put("Country Code", 13);    // represents country code
         data.put("Ireland", 13);            // represents a selected country
-        data.put("Threshold", 183);         // the tax threshold for that country
+        data.put("Threshold 1", 183);         // the tax threshold for that country
         data.put("Days Worked", 170);       // number of days worked in country
-        data.put("Notification Limit", 146);// 80% of threshold days for country
+        data.put("Threshold 6", 280);
+        data.put("PAYE", 20);
+        data.put("Minimum Threshold", 30);
+        data.put("Tax Year", 2017);
+        data.put("Current Year", 2017);
+        data.put("Residency", 300);
+
 
     } // constructor
 
